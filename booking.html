@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="main-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Assets/plane (1).png">
+    <title>SkyHigh | Scenic Flight & Tours</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0ea5e9',
+                        secondary: '#0369a1',
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+</script>
+    <style>
+        .card-hover:hover .hover-zoom { transform: scale(1.1); }
+        transition-all { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+
+ 
+<nav class="fixed w-full z-50 transition-all duration-300 bg-white dark:bg-slate-950 lg:bg-white/80 lg:dark:bg-slate-950/80 lg:backdrop-blur-lg border-b border-slate-200 dark:border-slate-800" id="main-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+            
+            <div class="flex-shrink-0 flex items-center gap-2">
+                <a href="index.html">
+                   <div class="text-2xl font-black text-primary tracking-tighter uppercase">SKY<span class="text-slate-400">HIGH</span></div>
+
+
+                </a>
+            </div>
+
+           <div class="hidden lg:flex items-center lg:gap-x-4 xl:gap-x-8">
+    
+    <a href="index.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Home 1
+    </a>
+
+    <a href="home2.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Home 2
+    </a>
+
+    <a href="service.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Services
+    </a>
+
+    <a href="gallery.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Gallery
+    </a>
+
+    <a href="about.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        About
+    </a>
+
+    <a href="contact.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Contact
+    </a>
+
+    <div class="relative group">
+        <button class="flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors font-bold text-[11px] xl:text-sm uppercase tracking-widest outline-none whitespace-nowrap">
+            <i class="fa-solid fa-circle-user text-base xl:text-lg"></i>
+            <span>Dashboard</span>
+            <i class="fa-solid fa-chevron-down text-[9px] group-hover:rotate-180 transition-transform"></i>
+        </button>
+        
+        <div class="absolute right-0 mt-3 w-48 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-50">
+            <a href="user.html" class="block px-4 py-2.5 text-xs xl:text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors">
+                <i class="fa-solid fa-user-gear mr-2 opacity-50"></i> My Profile
+            </a>
+            <hr class="my-1 border-slate-100 dark:border-slate-800">
+            <!-- <a href="/login.html" class="block px-4 py-2.5 text-xs xl:text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+                <i class="fa-solid fa-power-off mr-2 opacity-50"></i> Logout
+            </a> -->
+        </div>
+    </div>
+</div>
+
+            <div class="hidden lg:flex items-center gap-4">
+                <button onclick="toggleDir()" class="p-2 text-xs font-black bg-slate-100 dark:bg-slate-800 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-primary hover:text-white transition-all">
+                    <span id="dir-text">LTR</span>
+                </button>
+                <button onclick="toggleDarkMode()" class="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-yellow-500 hover:text-white transition-all">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+                <a href="login.html" class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-full shadow-lg shadow-primary/30 hover:bg-secondary transition-all">
+                    Book Now
+                </a>
+            </div>
+
+            <div class="lg:hidden flex items-center gap-2">
+                <button onclick="toggleDarkMode()" class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+                <button onclick="toggleMobileMenu()" class="text-slate-900 dark:text-white p-2" id="menu-btn">
+                    <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[60] hidden transition-opacity duration-300 opacity-0">
+        <div class="absolute right-0 top-0 h-full w-72 bg-white dark:bg-slate-900 shadow-2xl p-8 overflow-y-auto max-h-screen transform translate-x-full transition-transform duration-300 custom-scrollbar" id="mobile-sidebar">
+            <div class="flex justify-between items-center mb-10">
+                <a href="index.html">
+                   <div class="text-xl font-black text-primary tracking-tighter">SKYHIGH</div>
+                </a>
+
+             
+                <button onclick="toggleMobileMenu()" class="text-slate-500 hover:text-red-500 transition-colors">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+            
+            <nav class="flex flex-col gap-5">
+                <div class="flex items-center gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+                    <i class="fa-solid fa-circle-user text-3xl text-primary"></i>
+                    <div>
+                        <p class="text-sm font-bold dark:text-white">Alex Rivera</p>
+                        <p class="text-[10px] text-slate-500 uppercase">Premium Member</p>
+                    </div>
+                </div>
+
+                <a href="index.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Home 1</a>
+                <a href="home2.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Home 2</a>
+                <a href="service.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Services</a>
+                
+                <details class="group">
+                    <summary class="flex justify-between items-center text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 cursor-pointer list-none">
+                        Dashboard
+                        <i class="fa-solid fa-chevron-down text-sm group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="flex flex-col gap-3 pl-4 pt-3 pb-2 text-sm text-slate-500">
+                        <a href="user.html" class="hover:text-primary transition-colors">My Profile</a>
+                        <!-- <a href="#" class="hover:text-primary transition-colors">Flight History</a> -->
+                        <!-- <a href="#" class="hover:text-primary transition-colors">Settings</a> -->
+                        <!-- <a href="/login.html" class="text-red-500">Logout</a> -->
+                    </div>
+                </details>
+
+                <a href="gallery.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Gallery</a>
+                <a href="about.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">About</a>
+                <a href="contact.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Contact</a>
+                
+                <div class="pt-6 pb-10 flex flex-col gap-4">
+                    <button onclick="toggleDir()" class="flex items-center justify-between px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 font-bold text-slate-500">
+                        Language <span id="dir-text-mobile" class="bg-primary text-white px-2 py-0.5 rounded text-[10px]">LTR</span>
+                    </button>
+                    <a href="login.html" class="w-full py-4 bg-primary text-white text-center rounded-2xl font-bold shadow-xl shadow-primary/20 hover:bg-secondary transition-all">
+                        Book Now
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+</nav>
+<style>
+  /* Styling for the active link */
+.nav-link-active {
+    color: #4f46e5 !important; /* indigo-600 */
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* The animated underline effect */
+.nav-link-active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #4f46e5, #818cf8);
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(79, 70, 229, 0.4);
+}
+
+.dark .nav-link-active {
+    color: #818cf8 !important; /* indigo-400 */
+}
+</style> 
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+    // 1. Identify the current page (e.g., 'Gallery.html' or 'index.html')
+    let path = window.location.pathname.split("/").pop();
+    
+    // Handle the root path (if user is just on domain.com/)
+    if (path === '' || path === '/') path = 'index.html';
+
+    // 2. Select all links in both desktop and mobile menus
+    const allLinks = document.querySelectorAll('.nav-link, #mobile-menu a');
+
+    allLinks.forEach(link => {
+        // Get the href attribute of the link
+        const href = link.getAttribute('href');
+
+        if (href === path) {
+            // Apply Active Classes
+            link.classList.add('nav-link-active');
+            
+            // Remove the default 'slate' colors so the active color shows
+            link.classList.remove('text-slate-500', 'text-slate-600', 'dark:text-slate-400', 'dark:text-slate-300');
+            
+            // If it's a mobile link, ensure it stays bold and high-contrast
+            if (link.classList.contains('text-lg')) {
+                link.classList.add('text-primary');
+            }
+        }
+    });
+});
+</script>
+
+
+
+<section id="smart-booking" class="relative py-24 pt-32 bg-slate-50 dark:bg-slate-950 transition-colors duration-500 overflow-hidden min-h-screen">
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-3xl mb-16">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest mb-4">
+                <i class="fa-solid fa-tower-control animate-pulse"></i> Flight Dispatch System
+            </div>
+            <h2 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white uppercase tracking-tighter italic leading-none">
+                Smart Booking <br> <span class="text-primary">& Live Route Sync</span>
+            </h2>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-12 items-start">
+            
+            <div class="lg:col-span-7 space-y-8">
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-6 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm">
+                        <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">Fleet Status</p>
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl font-black dark:text-white italic">08</span>
+                            <span class="text-[8px] px-2 py-0.5 bg-green-500/10 text-green-500 rounded-full font-bold">In-Hangar</span>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm">
+                        <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">Active Hubs</p>
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl font-black dark:text-white italic">12</span>
+                            <span class="text-[8px] px-2 py-0.5 bg-primary/10 text-primary rounded-full font-bold">Global</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="showEmailPopup()" class="p-10 rounded-[3rem] bg-slate-900 text-white relative overflow-hidden shadow-2xl cursor-pointer group">
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-8">
+                            <div>
+                                <h3 class="text-2xl font-black uppercase italic tracking-tighter">Instant Manifest</h3>
+                                <p class="text-slate-400 text-xs mt-1">Receive automated flight logs & boarding tickets.</p>
+                            </div>
+                            <div class="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                                <i class="fa-solid fa-envelope-open-text"></i>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-1 h-1 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary w-2/3 animate-pulse"></div>
+                            </div>
+                            <span class="text-[9px] font-black uppercase text-primary">Live Sync...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 sticky top-32">
+                <div class="p-10 bg-white dark:bg-slate-900 rounded-[3.5rem] border border-slate-200 dark:border-slate-800 shadow-2xl relative">
+                    <h4 class="text-xl font-black dark:text-white uppercase italic mb-8">Route <span class="text-primary">Terminal</span></h4>
+                    
+                    <form id="bookingForm" class="space-y-6">
+                        <div class="space-y-2">
+                            <label class="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-4">Departure Hub</label>
+                            <div class="relative">
+                                <select id="departureHub" required class="w-full p-5 bg-slate-50 dark:bg-slate-800 rounded-2xl border-none outline-none focus:ring-2 focus:ring-primary dark:text-white font-bold text-sm appearance-none cursor-pointer">
+                                    <option value="" disabled selected>Select Origin</option>
+                                    <option value="JFK">New York (JFK) - Terminal A</option>
+                                    <option value="LHR">London (LHR) - Hangar 7</option>
+                                    <option value="DXB">Dubai (DXB) - Skypad 1</option>
+                                    <option value="ZRH">Zurich (ZRH) - Alpine Base</option>
+                                </select>
+                                <i class="fa-solid fa-plane-departure absolute right-6 top-1/2 -translate-y-1/2 text-slate-300"></i>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-4">Arrival Hub</label>
+                            <div class="relative">
+                                <select id="arrivalHub" required class="w-full p-5 bg-slate-50 dark:bg-slate-800 rounded-2xl border-none outline-none focus:ring-2 focus:ring-primary dark:text-white font-bold text-sm appearance-none cursor-pointer">
+                                    <option value="" disabled selected>Select Destination</option>
+                                    <option value="GCN">Grand Canyon Scenic Park</option>
+                                    <option value="NYC">Manhattan Heliport</option>
+                                    <option value="ALPS">Swiss Alps Glacier</option>
+                                    <option value="COAST">Twelve Apostles Coast</option>
+                                </select>
+                                <i class="fa-solid fa-plane-arrival absolute right-6 top-1/2 -translate-y-1/2 text-slate-300"></i>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-4">Passenger Email</label>
+                            <input type="email" id="userEmail" required placeholder="pilot@skyhigh.com" class="w-full p-5 bg-slate-50 dark:bg-slate-800 rounded-2xl border-none outline-none focus:ring-2 focus:ring-primary dark:text-white font-bold text-sm">
+                        </div>
+                        
+                        <!-- <div class="p-6 bg-slate-900 dark:bg-slate-950 rounded-[2.5rem] text-white flex justify-between items-center">
+                            <div>
+                                <p class="text-[8px] font-black uppercase opacity-50 mb-1">Status</p>
+                                <h5 id="statusText" class="text-xl font-black italic tracking-tighter uppercase">Awaiting Input</h5>
+                            </div>
+                            <i class="fa-solid fa-satellite-dish text-primary text-xl animate-pulse"></i>
+                        </div> -->
+
+                        <button type="submit" class="w-full py-5 bg-primary text-white font-black rounded-2xl uppercase tracking-widest text-xs shadow-xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all">
+                            Book Flight
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="emailPopup" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-[3rem] p-10 shadow-2xl relative">
+            <button onclick="closePopups()" class="absolute top-8 right-8 text-slate-400 hover:text-primary transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 bg-primary/10 text-primary rounded-3xl flex items-center justify-center mx-auto mb-6 text-3xl">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <h3 class="text-2xl font-black dark:text-white uppercase italic">Instant Manifest</h3>
+                <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mt-2">Notification System Preview</p>
+            </div>
+            <div class="p-5 bg-slate-50 dark:bg-slate-800 rounded-2xl border-l-4 border-primary">
+                <p class="text-[9px] font-black text-primary uppercase mb-1">Incoming Log</p>
+                <p class="text-xs font-bold dark:text-white">Boarding pass SH-LOG-42 is ready. Check-in via Hangar Terminal.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirmPopup" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-primary/10 backdrop-blur-2xl">
+        <div class="bg-white w-full max-w-md rounded-[4rem] shadow-2xl overflow-hidden relative">
+            <div class="bg-slate-900 p-10 text-center relative overflow-hidden">
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl shadow-lg">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3 class="text-white text-3xl font-black uppercase italic tracking-tighter leading-none">Flight Manifest <br> Confirmed</h3>
+                </div>
+                <i class="fa-solid fa-plane-up absolute -bottom-4 -right-4 text-white opacity-5 text-9xl"></i>
+            </div>
+            
+            <div class="p-10">
+                <div class="grid grid-cols-2 gap-8 mb-10 border-b border-dashed border-slate-200 pb-10">
+                    <div><p class="text-[9px] font-black text-slate-400 uppercase">Passenger</p><p id="passName" class="font-black text-slate-900 uppercase">PILOT</p></div>
+                    <div class="text-right"><p class="text-[9px] font-black text-slate-400 uppercase">Flight Path</p><p id="passRoute" class="font-black text-slate-900 uppercase">ROUTE</p></div>
+                    <div><p class="text-[9px] font-black text-slate-400 uppercase">Departure</p><p id="passDep" class="font-black text-slate-900">NYC</p></div>
+                    <div class="text-right"><p class="text-[9px] font-black text-slate-400 uppercase">Arrival</p><p id="passArr" class="font-black text-slate-900">GCN</p></div>
+                </div>
+                
+                <div class="text-center">
+                    <i class="fa-solid fa-barcode text-7xl text-slate-900 opacity-80 mb-6"></i>
+                    <button onclick="window.print()" class="w-full py-5 bg-primary text-white font-black rounded-2xl uppercase tracking-widest text-xs shadow-xl shadow-primary/20 hover:scale-105 transition-all">Download Ticket</button>
+                    <button onclick="closePopups()" class="mt-4 text-[10px] font-black text-slate-400 uppercase hover:text-primary transition-colors">Return to Base</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const emailPopup = document.getElementById('emailPopup');
+    const confirmPopup = document.getElementById('confirmPopup');
+    const bookingForm = document.getElementById('bookingForm');
+
+    function showEmailPopup() {
+        emailPopup.classList.replace('hidden', 'flex');
+    }
+
+    function closePopups() {
+        emailPopup.classList.replace('flex', 'hidden');
+        confirmPopup.classList.replace('flex', 'hidden');
+    }
+
+    // Update Live Status Text based on dropdown selection
+    document.querySelectorAll('select').forEach(select => {
+        select.addEventListener('change', () => {
+            const dep = document.getElementById('departureHub').value;
+            const arr = document.getElementById('arrivalHub').value;
+            if(dep && arr) {
+                document.getElementById('statusText').innerText = `${dep} > ${arr} READY`;
+                document.getElementById('statusText').classList.add('text-primary');
+            }
+        });
+    });
+
+    bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button');
+        const email = document.getElementById('userEmail').value;
+        const dep = document.getElementById('departureHub').value;
+        const arr = document.getElementById('arrivalHub').value;
+        
+        btn.innerHTML = '<i class="fa-solid fa-tower-observation animate-spin mr-2"></i> Syncing Route...';
+        btn.disabled = true;
+
+        setTimeout(() => {
+            document.getElementById('passName').innerText = email.split('@')[0];
+            document.getElementById('passRoute').innerText = `${dep} TO ${arr}`;
+            document.getElementById('passDep').innerText = dep;
+            document.getElementById('passArr').innerText = arr;
+            confirmPopup.classList.replace('hidden', 'flex');
+            btn.innerHTML = 'Initialize Flight';
+            btn.disabled = false;
+        }, 1500);
+    });
+</script> 
+  
+  
+  <footer class="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            
+            <div class="space-y-6">
+                <div>
+                    <a href="index.html">
+                     <div class="text-2xl font-black text-primary tracking-tighter">SKY<span class="text-slate-400">HIGH</span></div>
+                    </a>
+                   
+                    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Redefining travel through the lens of flight. Your window seat to the world's wonders.
+                    </p>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-white hover:bg-[#E1306C] hover:border-[#E1306C] transition-all duration-300 hover:-translate-y-1">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 hover:-translate-y-1">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    <!-- </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-white hover:bg-[#000000] hover:border-[#000000] transition-all duration-300 hover:-translate-y-1">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a> -->
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-white hover:bg-[#FF0000] hover:border-[#FF0000] transition-all duration-300 hover:-translate-y-1">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8 lg:col-span-2">
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-slate-500 hover:text-primary transition-colors">Home1</a></li>
+                        <li><a href="home2.html" class="text-slate-500 hover:text-primary transition-colors">Home2</a></li>
+                        <li><a href="Gallery.html" class="text-slate-500 hover:text-primary transition-colors">Gallery</a></li>
+                        <li><a href="login.html" class="text-slate-500 hover:text-primary transition-colors">Book Now</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="about.html" class="text-slate-500 hover:text-primary transition-colors">About</a></li>
+                        <li><a href="contact.html" class="text-slate-500 hover:text-primary transition-colors">Contact</a></li>
+                        <li><a href="404error.html" class="text-slate-500 hover:text-primary transition-colors">404 Page</a></li>
+                        <li><a href="comingsoon.html" class="text-slate-500 hover:text-primary transition-colors">Coming Soon</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">Stay Updated</h4>
+                <p class="text-xs text-slate-500">New routes delivered to your inbox.</p>
+                <form class="relative group">
+                    <input type="email" placeholder="Your email" class="w-full pl-4 pr-12 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                    <button class="absolute right-1.5 top-1.5 bottom-1.5 px-3 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+                </form>
+                <div class="flex items-center gap-2 text-[10px] text-slate-400">
+                    <i class="fa-solid fa-shield-halved"></i> No spam. Just flight logs.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">
+                © 2026 SKYHIGH SCENIC TOURS. ALL RIGHTS RESERVED.
+            </p>
+            <div class="flex gap-6">
+                <a href="#" class="text-[11px] text-slate-400 hover:text-primary transition-colors uppercase tracking-widest">Privacy</a>
+                <a href="#" class="text-[11px] text-slate-400 hover:text-primary transition-colors uppercase tracking-widest">Terms</a>
+            </div>
+        </div>
+    </div>
+</footer>
+  <script>
+    // --- INITIALIZATION (Run on Page Load) ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Check and Apply Dark Mode
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // 2. Check and Apply Direction (LTR/RTL)
+        const savedDir = localStorage.getItem('direction') || 'ltr';
+        const htmlTag = document.getElementById('root-html'); // Ensure your <html> tag has this ID
+        const dirText = document.getElementById('dir-text');
+
+        if (htmlTag) {
+            htmlTag.setAttribute('dir', savedDir);
+        }
+        if (dirText) {
+            dirText.innerText = savedDir.toUpperCase();
+        }
+    });
+
+    // --- TOGGLE FUNCTIONS ---
+
+    function toggleDarkMode() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        // Save choice to local storage
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    function toggleDir() {
+        const htmlTag = document.getElementById('root-html');
+        const dirText = document.getElementById('dir-text');
+        const currentDir = htmlTag.getAttribute('dir');
+        
+        const newDir = (currentDir === 'ltr') ? 'rtl' : 'ltr';
+        
+        // Apply
+        htmlTag.setAttribute('dir', newDir);
+        if (dirText) dirText.innerText = newDir.toUpperCase();
+        
+        // Save choice to local storage
+        localStorage.setItem('direction', newDir);
+    }
+</script>
+<script>
+    // --- Mobile Menu Logic ---
+    function toggleMobileMenu() {
+        const menuOverlay = document.getElementById('mobile-menu');
+        const sidebar = document.getElementById('mobile-sidebar');
+        
+        if (menuOverlay.classList.contains('hidden')) {
+            menuOverlay.classList.remove('hidden');
+            setTimeout(() => {
+                menuOverlay.classList.add('opacity-100');
+                sidebar.classList.remove('translate-x-full');
+            }, 10);
+        } else {
+            menuOverlay.classList.remove('opacity-100');
+            sidebar.classList.add('translate-x-full');
+            setTimeout(() => menuOverlay.classList.add('hidden'), 300);
+        }
+    }
+
+    // --- Navbar Scroll Effect ---
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('main-nav');
+        if (window.scrollY > 50) {
+            nav.classList.add('py-2', 'shadow-xl');
+            nav.classList.remove('py-4');
+        } else {
+            nav.classList.remove('py-2', 'shadow-xl');
+            nav.classList.add('py-4');
+        }
+    });
+
+    // --- Enhanced Local Storage Logic ---
+    function applyPreferences() {
+        // Theme
+        const theme = localStorage.getItem('theme') || 'light';
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+        
+        // Direction
+        const dir = localStorage.getItem('direction') || 'ltr';
+        document.documentElement.setAttribute('dir', dir);
+        document.getElementById('dir-text').innerText = dir.toUpperCase();
+        document.getElementById('dir-text-mobile').innerText = dir.toUpperCase();
+    }
+
+    function toggleDarkMode() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    function toggleDir() {
+        const html = document.documentElement;
+        const currentDir = html.getAttribute('dir');
+        const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+        
+        html.setAttribute('dir', newDir);
+        localStorage.setItem('direction', newDir);
+        applyPreferences(); // Update text labels
+    }
+
+    document.addEventListener('DOMContentLoaded', applyPreferences);
+</script>
+</body>
+</html>

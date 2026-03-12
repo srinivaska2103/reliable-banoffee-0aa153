@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="main-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Assets/plane (1).png">
+    <title>SkyHigh | Scenic Flight & Tours</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0ea5e9',
+                        secondary: '#0369a1',
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+</script>
+    <style>
+        .card-hover:hover .hover-zoom { transform: scale(1.1); }
+        transition-all { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+
+ 
+
+<nav class="fixed w-full z-50 transition-all duration-300 bg-white dark:bg-slate-950 lg:bg-white/80 lg:dark:bg-slate-950/80 lg:backdrop-blur-lg border-b border-slate-200 dark:border-slate-800" id="main-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+            
+            <div class="flex-shrink-0 flex items-center gap-2">
+                <a href="index.html">
+                   <div class="text-2xl font-black text-primary tracking-tighter uppercase">SKY<span class="text-slate-400">HIGH</span></div>
+
+
+                </a>
+            </div>
+
+           <div class="hidden lg:flex items-center lg:gap-x-4 xl:gap-x-8">
+    
+    <a href="index.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-primary whitespace-nowrap transition-all">
+        Home 1
+    </a>
+
+    <a href="home2.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Home 2
+    </a>
+
+    <a href="service.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Services
+    </a>
+
+    <a href="gallery.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Gallery
+    </a>
+
+    <a href="about.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        About
+    </a>
+
+    <a href="contact.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Contact
+    </a>
+
+    <div class="relative group">
+        <button class="flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors font-bold text-[11px] xl:text-sm uppercase tracking-widest outline-none whitespace-nowrap">
+            <i class="fa-solid fa-circle-user text-base xl:text-lg"></i>
+            <span>Dashboard</span>
+            <i class="fa-solid fa-chevron-down text-[9px] group-hover:rotate-180 transition-transform"></i>
+        </button>
+        
+        <div class="absolute right-0 mt-3 w-48 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-50">
+            <a href="user.html" class="block px-4 py-2.5 text-xs xl:text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors">
+                <i class="fa-solid fa-user-gear mr-2 opacity-50"></i> My Profile
+            </a>
+            <hr class="my-1 border-slate-100 dark:border-slate-800">
+            <!-- <a href="/login.html" class="block px-4 py-2.5 text-xs xl:text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+                <i class="fa-solid fa-power-off mr-2 opacity-50"></i> Logout
+            </a> -->
+        </div>
+    </div>
+</div>
+
+            <div class="hidden lg:flex items-center gap-4">
+                <button onclick="toggleDir()" class="p-2 text-xs font-black bg-slate-100 dark:bg-slate-800 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-primary hover:text-white transition-all">
+                    <span id="dir-text">LTR</span>
+                </button>
+                <button onclick="toggleDarkMode()" class="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-yellow-500 hover:text-white transition-all">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+                <a href="login.html" class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-full shadow-lg shadow-primary/30 hover:bg-secondary transition-all">
+                    Book Now
+                </a>
+            </div>
+
+            <div class="lg:hidden flex items-center gap-2">
+                <button onclick="toggleDarkMode()" class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+                <button onclick="toggleMobileMenu()" class="text-slate-900 dark:text-white p-2" id="menu-btn">
+                    <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[60] hidden transition-opacity duration-300 opacity-0">
+        <div class="absolute right-0 top-0 h-full w-72 bg-white dark:bg-slate-900 shadow-2xl p-8 overflow-y-auto max-h-screen transform translate-x-full transition-transform duration-300 custom-scrollbar" id="mobile-sidebar">
+            <div class="flex justify-between items-center mb-10">
+                <a href="index.html">
+                   <div class="text-xl font-black text-primary tracking-tighter">SKYHIGH</div>
+                </a>
+
+             
+                <button onclick="toggleMobileMenu()" class="text-slate-500 hover:text-red-500 transition-colors">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+            
+            <nav class="flex flex-col gap-5">
+                <div class="flex items-center gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+                    <i class="fa-solid fa-circle-user text-3xl text-primary"></i>
+                    <div>
+                        <p class="text-sm font-bold dark:text-white">Alex Rivera</p>
+                        <p class="text-[10px] text-slate-500 uppercase">Premium Member</p>
+                    </div>
+                </div>
+
+                <a href="index.html" class="text-lg font-bold text-primary py-2 border-b border-slate-50 dark:border-slate-800/50">Home 1</a>
+                <a href="home2.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Home 2</a>
+                <a href="service.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Services</a>
+                
+                <details class="group">
+                    <summary class="flex justify-between items-center text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 cursor-pointer list-none">
+                        Dashboard
+                        <i class="fa-solid fa-chevron-down text-sm group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="flex flex-col gap-3 pl-4 pt-3 pb-2 text-sm text-slate-500">
+                        <a href="user.html" class="hover:text-primary transition-colors">My Profile</a>
+                        <!-- <a href="#" class="hover:text-primary transition-colors">Flight History</a> -->
+                        <!-- <a href="#" class="hover:text-primary transition-colors">Settings</a> -->
+                        <!-- <a href="/login.html" class="text-red-500">Logout</a> -->
+                    </div>
+                </details>
+
+                <a href="gallery.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Gallery</a>
+                <a href="about.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">About</a>
+                <a href="contact.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Contact</a>
+                
+                <div class="pt-6 pb-10 flex flex-col gap-4">
+                    <button onclick="toggleDir()" class="flex items-center justify-between px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 font-bold text-slate-500">
+                        Language <span id="dir-text-mobile" class="bg-primary text-white px-2 py-0.5 rounded text-[10px]">LTR</span>
+                    </button>
+                    <a href="login.html" class="w-full py-4 bg-primary text-white text-center rounded-2xl font-bold shadow-xl shadow-primary/20 hover:bg-secondary transition-all">
+                        Book Now
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+</nav>
+<style>
+  /* Styling for the active link */
+.nav-link-active {
+    color: #4f46e5 !important; /* indigo-600 */
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* The animated underline effect */
+.nav-link-active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #4f46e5, #818cf8);
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(79, 70, 229, 0.4);
+}
+
+.dark .nav-link-active {
+    color: #818cf8 !important; /* indigo-400 */
+}
+</style> 
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+    // 1. Identify the current page (e.g., 'Gallery.html' or 'index.html')
+    let path = window.location.pathname.split("/").pop();
+    
+    // Handle the root path (if user is just on domain.com/)
+    if (path === '' || path === '/') path = 'index.html';
+
+    // 2. Select all links in both desktop and mobile menus
+    const allLinks = document.querySelectorAll('.nav-link, #mobile-menu a');
+
+    allLinks.forEach(link => {
+        // Get the href attribute of the link
+        const href = link.getAttribute('href');
+
+        if (href === path) {
+            // Apply Active Classes
+            link.classList.add('nav-link-active');
+            
+            // Remove the default 'slate' colors so the active color shows
+            link.classList.remove('text-slate-500', 'text-slate-600', 'dark:text-slate-400', 'dark:text-slate-300');
+            
+            // If it's a mobile link, ensure it stays bold and high-contrast
+            if (link.classList.contains('text-lg')) {
+                link.classList.add('text-primary');
+            }
+        }
+    });
+});
+</script>
+<!-- <script>
+    // 1. ACTIVE STATE LOGIC
+    function setActiveLink() {
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('nav a, #mobile-sidebar a');
+
+        navLinks.forEach(link => {
+            // Remove previous active classes
+            link.classList.remove('text-primary');
+            link.classList.add('text-slate-500', 'dark:text-slate-400');
+
+            // Check if href matches current path (handles index.html and root "/")
+            const href = link.getAttribute('href');
+            if (currentPath === href || (currentPath === '/' && href === '/index.html')) {
+                link.classList.add('text-primary');
+                link.classList.remove('text-slate-500', 'dark:text-slate-400');
+                
+                // For Mobile Sidebar: Add a background indicator
+                if (link.closest('#mobile-sidebar')) {
+                    link.classList.add('bg-primary/5', 'pl-4');
+                }
+            }
+        });
+    }
+
+    // 2. MOBILE MENU TOGGLE
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const sidebar = document.getElementById('mobile-sidebar');
+        
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            setTimeout(() => {
+                menu.classList.add('opacity-100');
+                sidebar.classList.remove('translate-x-full');
+            }, 10);
+        } else {
+            menu.classList.remove('opacity-100');
+            sidebar.classList.add('translate-x-full');
+            setTimeout(() => menu.classList.add('hidden'), 300);
+        }
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', setActiveLink);
+</script>
+
+<style>
+    /* Desktop Active Underline Animation */
+    @media (min-width: 1024px) {
+        .lg\:flex a {
+            position: relative;
+        }
+        .lg\:flex a.text-primary::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #0ea5e9; /* primary color */
+            border-radius: 2px;
+        }
+    }
+
+    /* Custom Scrollbar for Mobile Sidebar */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #0ea5e9;
+        border-radius: 10px;
+    }
+</style> -->
+<section class="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden bg-white dark:bg-slate-900">
+    
+    <div class="absolute top-0 -left-4 w-72 h-72 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+    <div class="absolute top-0 -right-4 w-72 h-72 bg-blue-300 dark:bg-blue-900/30 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-sky-300 dark:bg-sky-900/30 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+            
+            <div class="text-center lg:text-left lg:w-1/2">
+                <span class="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wide text-primary uppercase bg-primary/10 rounded-full animate-bounce">
+                    ✨ New Destinations Added
+                </span>
+                
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+                    See The World From A <br/>
+                    <span class="relative inline-block">
+                        <span class="relative z-10 text-primary">New Perspective</span>
+                        <span class="absolute bottom-2 left-0 w-full h-3 bg-primary/20 -z-10"></span>
+                    </span>
+                </h1>
+                
+                <p class="max-w-2xl mx-auto lg:mx-0 text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed">
+                    Experience breathtaking aerial views, unforgettable sightseeing flights, and luxury air tours over the world’s most stunning landscapes.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                    <a href="booking.html">
+                         <button class="group relative px-8 py-4 bg-primary text-white rounded-full font-bold transition-all overflow-hidden shadow-lg shadow-primary/30 hover:shadow-primary/50">
+                        <span class="relative z-10 flex items-center gap-2">
+                             Book Your Flight
+                        </span>
+                        <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                    </button>
+                    </a>
+                   
+                    <a href="service.html">
+<button class="px-8 py-4 bg-transparent border-2 border-slate-200 dark:border-slate-700 rounded-full font-bold hover:border-primary hover:text-primary transition-all dark:text-white">
+                        Explore Tours
+                    </button>
+                    </a>
+                    
+                </div>
+
+                <div class="mt-12 grid grid-cols-2 gap-6 max-w-lg mx-auto lg:mx-0">
+                    <div class="group p-4 bg-slate-50 dark:bg-slate-800/50 border border-transparent hover:border-primary/30 rounded-2xl transition-all hover:scale-105">
+                        <div class="text-primary text-2xl mb-1 font-bold">150+</div>
+                        <div class="text-sm text-slate-500 font-medium">Global Routes</div>
+                    </div>
+                    <div class="group p-4 bg-slate-50 dark:bg-slate-800/50 border border-transparent hover:border-primary/30 rounded-2xl transition-all hover:scale-105">
+                        <div class="text-primary text-2xl mb-1 font-bold">100%</div>
+                        <div class="text-sm text-slate-500 font-medium">Safety Record</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 relative">
+                <div class="relative z-20 rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 group">
+                    <img src="Assets/indeximg1" 
+                         alt="Cockpit View" 
+                         class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute bottom-6 right-6 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md p-4 rounded-2xl shadow-xl animate-float">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white">
+                                <i class="fa-solid fa-plane-up"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500">Next Takeoff</p>
+                                <p class="font-bold">In 15 Minutes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/10 rounded-full -z-10 border border-primary/20"></div>
+                <div class="absolute -top-6 -right-6 w-48 h-48 bg-slate-200 dark:bg-slate-700 rounded-full -z-10"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    @keyframes blob {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+        100% { transform: translate(0px, 0px) scale(1); }
+    }
+    .animate-blob {
+        animation: blob 7s infinite;
+    }
+    .animation-delay-2000 { animation-delay: 2s; }
+    .animation-delay-4000 { animation-delay: 4s; }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+    }
+    .animate-float {
+        animation: float 4s ease-in-out infinite;
+    }
+</style>
+
+    <section class="py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div class="max-w-2xl">
+                <h2 class="text-4xl font-extrabold tracking-tight mb-4">
+                    🛩 Popular <span class="text-primary">Scenic Flight</span> Packages
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400">
+                    Curated aerial journeys designed for photographers, thrill-seekers, and romantics. Every seat is a window seat.
+                </p>
+            </div>
+            <button class="hidden md:block px-6 py-3 bg-primary/10 text-primary hover:bg-primary hover:text-white rounded-xl font-bold transition-all border border-primary/20">
+                View All 24 Packages
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="group relative bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="Assets/indeximg2" alt="Sunrise" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                    <div class="absolute top-4 left-4 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold shadow-sm">
+                        ⭐ 4.9 (120 Reviews)
+                    </div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-xl font-bold">🌅 Golden Hour Magic</h3>
+                        <p class="text-sm opacity-90">Sunrise & Sunset Flights</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">Experience the first light of dawn or the purple hues of dusk over the horizon. Perfect for professional photography.</p>
+                    <div class="flex items-center justify-between border-t dark:border-slate-800 pt-4">
+                        
+                        <span class="text-2xl font-bold text-primary">$199<span class="text-sm text-slate-500 font-normal">/person</span></span>
+                        <a href="booking.html">
+ <button class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl group-hover:bg-primary group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="Assets/indeximg3" alt="Mountains" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                    <div class="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse">
+                        Best Seller
+                    </div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-xl font-bold">🏔 Peak Expedition</h3>
+                        <p class="text-sm opacity-90">Mountain & Glacier Tours</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">Soar past snow-capped summits and witness the raw power of ancient glaciers from a bird's-eye view.</p>
+                    <div class="flex items-center justify-between border-t dark:border-slate-800 pt-4">
+                        <span class="text-2xl font-bold text-primary">$249<span class="text-sm text-slate-500 font-normal">/person</span></span>
+                        <a href="booking.html">
+<button class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl group-hover:bg-primary group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="Assets/indeximg4" alt="City" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-xl font-bold">🏙 Midnight Metropolis</h3>
+                        <p class="text-sm opacity-90">City Night Light Tours</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">See the city come alive with millions of lights. A romantic journey over iconic landmarks and bridges.</p>
+                    <div class="flex items-center justify-between border-t dark:border-slate-800 pt-4">
+                        <span class="text-2xl font-bold text-primary">$175<span class="text-sm text-slate-500 font-normal">/person</span></span>
+                        <a href="booking.html">
+ <button class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl group-hover:bg-primary group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="Assets/indeximg5" alt="Coastal" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-xl font-bold">🌊 Azure Coastline</h3>
+                        <p class="text-sm opacity-90">Island & Beach Discovery</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">Track the turquoise waves and white sandy beaches. Look out for whales and dolphins from above!</p>
+                    <div class="flex items-center justify-between border-t dark:border-slate-800 pt-4">
+                        <span class="text-2xl font-bold text-primary">$215<span class="text-sm text-slate-500 font-normal">/person</span></span>
+                        <a href="booking.html">
+<button class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl group-hover:bg-primary group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="Assets/indeximg6" alt="Desert" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-xl font-bold">🏜 Dune Navigator</h3>
+                        <p class="text-sm opacity-90">Desert & Canyon Safaris</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">Witness the shifting sands and deep red canyons. A majestic display of nature's vast geometry.</p>
+                    <div class="flex items-center justify-between border-t dark:border-slate-800 pt-4">
+                        <span class="text-2xl font-bold text-primary">$230<span class="text-sm text-slate-500 font-normal">/person</span></span>
+                       <a href="booking.html">
+ <button class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl group-hover:bg-primary group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                       </a>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative bg-primary rounded-[3rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-center items-center text-center p-10 border-4 border-white/10">
+    
+    <div class="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-all"></div>
+
+    <div class="relative w-24 h-24 bg-white/20 rounded-full flex items-center justify-center text-white text-4xl mb-8">
+        <i class="fa-solid fa-route animate-pulse"></i>
+        <div class="absolute inset-0 border-2 border-dashed border-white/30 rounded-full animate-[spin_8s_linear_infinite]"></div>
+    </div>
+
+    <h3 class="text-3xl font-black text-white mb-4 uppercase italic tracking-tighter">Create Your <br> Own Journey</h3>
+    <p class="text-white/80 text-sm mb-10 leading-relaxed max-w-[250px]">
+        Want a custom route for a proposal or a private group? We build the flight around your dreams.
+    </p>
+
+    <a href="contact.html" class="w-full sm:w-auto">
+        <button class="px-10 py-4 bg-white text-primary rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-xl hover:bg-slate-100 hover:scale-105 active:scale-95 transition-all">
+            Request Custom Quote
+        </button>
+    </a>
+</div>
+
+        </div>
+
+        <div class="mt-16 block md:hidden text-center">
+            <button class="w-full px-6 py-4 bg-primary text-white rounded-xl font-bold shadow-lg">View All Packages</button>
+        </div>
+    </div>
+</section>
+
+   <section class="py-24 relative overflow-hidden bg-white dark:bg-slate-900 transition-colors duration-500">
+    <div class="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-20 items-start">
+            
+            <div class="space-y-8">
+                <div>
+                    <h2 class="text-4xl font-extrabold mb-4 tracking-tight">
+                        ⭐ Why <span class="text-primary">SkyHigh</span>?
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400">We don't just provide flights; we provide peace of mind and premium service at every altitude.</p>
+                </div>
+
+                <div class="grid gap-4">
+                    <div class="group flex items-start gap-5 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-transparent hover:border-primary/20 hover:bg-white dark:hover:bg-slate-800 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 cursor-default">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                            <i class="fa-solid fa-user-tie text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">Experienced & Licensed Pilots</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Our aviators have over 5,000+ flight hours and specialized scenic route training.</p>
+                        </div>
+                    </div>
+
+                    <div class="group flex items-start gap-5 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-transparent hover:border-primary/20 hover:bg-white dark:hover:bg-slate-800 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 cursor-default">
+                       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="group inline-flex items-center justify-center p-4">
+    <div class="flex-shrink-0 w-16 h-16 flex items-center justify-center rounded-2xl bg-green-500 bg-opacity-10 border border-green-500 border-opacity-30 transition-all duration-300 group-hover:bg-green-500 group-hover:border-opacity-100">
+        
+        <i class="fa-solid fa-shield-halved text-2xl text-green-500 group-hover:text-white transition-all duration-300"></i>
+
+    </div>
+</div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">Safety First Standards</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Strict FAA-compliant maintenance and multi-point safety checks before every takeoff.</p>
+                        </div>
+                    </div>
+
+                    <div class="group flex items-start gap-5 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-transparent hover:border-primary/20 hover:bg-white dark:hover:bg-slate-800 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 cursor-default">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-blue-500/10 text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
+                            <i class="fa-solid fa-headset text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">24/7 Concierge Support</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Dedicated flight coordinators to help you plan the perfect route or reschedule easily.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative bg-slate-100 dark:bg-slate-800/50 p-8 md:p-12 rounded-[3rem] overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10">
+                    <i class="fa-solid fa-bullseye text-9xl"></i>
+                </div>
+                
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold mb-2">🎯 Perfect For Every Occasion</h2>
+                    <p class="text-slate-500 dark:text-slate-400 mb-10 text-sm">Make your special moments truly unforgettable from the sky.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="group relative bg-white dark:bg-slate-900 p-6 rounded-2xl text-center transition-all duration-300 hover:bg-primary hover:-translate-y-2 cursor-pointer shadow-sm">
+                            <i class="fa-solid fa-ring text-3xl mb-3 text-primary group-hover:text-white transition-colors"></i>
+                            <h5 class="font-bold group-hover:text-white transition-colors">Romantic Proposals</h5>
+                        </div>
+
+                        <div class="group relative bg-white dark:bg-slate-900 p-6 rounded-2xl text-center transition-all duration-300 hover:bg-primary hover:-translate-y-2 cursor-pointer shadow-sm">
+                            <i class="fa-solid fa-cake-candles text-3xl mb-3 text-primary group-hover:text-white transition-colors"></i>
+                            <h5 class="font-bold group-hover:text-white transition-colors">Birthdays</h5>
+                        </div>
+
+                        <div class="group relative bg-white dark:bg-slate-900 p-6 rounded-2xl text-center transition-all duration-300 hover:bg-primary hover:-translate-y-2 cursor-pointer shadow-sm">
+                            <i class="fa-solid fa-camera-retro text-3xl mb-3 text-primary group-hover:text-white transition-colors"></i>
+                            <h5 class="font-bold group-hover:text-white transition-colors">Photography</h5>
+                        </div>
+
+                        <div class="group relative bg-white dark:bg-slate-900 p-6 rounded-2xl text-center transition-all duration-300 hover:bg-primary hover:-translate-y-2 cursor-pointer shadow-sm">
+                            <i class="fa-solid fa-people-group text-3xl mb-3 text-primary group-hover:text-white transition-colors"></i>
+                            <h5 class="font-bold group-hover:text-white transition-colors">Family Fun</h5>
+                        </div>
+
+                        <div class="group relative bg-white dark:bg-slate-900 p-6 rounded-2xl text-center transition-all duration-300 hover:bg-primary hover:-translate-y-2 cursor-pointer shadow-sm">
+                            <i class="fa-solid fa-building text-3xl mb-3 text-primary group-hover:text-white transition-colors"></i>
+                            <h5 class="font-bold group-hover:text-white transition-colors">Corporate</h5>
+                        </div>
+
+                        <div class="group relative bg-white dark:bg-slate-900 p-6 rounded-2xl text-center transition-all duration-300 hover:bg-primary hover:-translate-y-2 cursor-pointer shadow-sm">
+                            <i class="fa-solid fa-gift text-3xl mb-3 text-primary group-hover:text-white transition-colors"></i>
+                            <h5 class="font-bold group-hover:text-white transition-colors">Gift Vouchers</h5>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-4 bg-primary/10 border border-primary/20 rounded-xl flex items-center gap-4 animate-pulse">
+                        <i class="fa-solid fa-lightbulb text-primary"></i>
+                        <p class="text-xs font-medium text-slate-700 dark:text-slate-300">Tip: Combine a Sunset Tour with a Proposal package for 15% off!</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<style>
+    @media (min-width: 768px) {
+        .masonry-grid { height: 750px; }
+    }
+    .custom-scrollbar::-webkit-scrollbar { display: none; }
+</style>
+
+<section class="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-500 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-2 text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4">
+                    <span class="w-10 h-[2px] bg-primary"></span>
+                    The Sky Is The Limit
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-6 dark:text-white leading-tight">
+                    Moments Captured <br class="hidden md:block">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">From The Sky</span>
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-base md:text-lg border-l-4 border-primary/20 pl-4">
+                    Explore breathtaking views captured during our scenic flights. Every journey offers a unique perspective.
+                </p>
+            </div>
+            
+            <div class="flex items-center gap-2 overflow-x-auto pb-4 lg:pb-0 custom-scrollbar">
+                <button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-primary text-white text-sm font-bold shadow-lg shadow-primary/30">All Shots</button>
+                <button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-bold hover:bg-primary hover:text-white transition-all border border-slate-200 dark:border-slate-700">Mountains</button>
+                <button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-bold hover:bg-primary hover:text-white transition-all border border-slate-200 dark:border-slate-700">Coastline</button>
+                <button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-bold hover:bg-primary hover:text-white transition-all border border-slate-200 dark:border-slate-700">Urban</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 masonry-grid h-auto">
+            
+            <div class="sm:col-span-2 sm:row-span-2 group relative rounded-[2.5rem] overflow-hidden cursor-pointer shadow-xl h-[400px] sm:h-full">
+                <img src="Assets/indeximg7" alt="Mountain View" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent flex flex-col justify-end p-6 md:p-10 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20">
+                        <span class="text-primary font-bold text-xs uppercase tracking-widest">Alpine Collection</span>
+                        <h3 class="text-white text-2xl font-bold mt-1">The Grand Summit</h3>
+                        <p class="text-slate-300 text-sm mt-2 line-clamp-2">Experience the sheer scale of the Alps from our specialized high-altitude aircraft.</p>
+                        <button class="mt-4 flex items-center gap-2 text-white text-sm font-bold group/btn">
+                            View Story <i class="fa-solid fa-arrow-right group-hover/btn:translate-x-2 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sm:col-span-1 sm:row-span-2 group relative rounded-[2.5rem] overflow-hidden cursor-pointer shadow-lg h-[400px] sm:h-full">
+                <img src="Assets/indeximg8" alt="Coast" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-primary shadow-2xl scale-0 group-hover:scale-100 transition-transform duration-500">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </div>
+                <div class="absolute bottom-6 left-6 text-white font-bold group-hover:opacity-0 transition-opacity">
+                    🌊 Coastal Azure
+                </div>
+            </div>
+
+            <div class="sm:col-span-1 sm:row-span-1 group relative rounded-[2.5rem] overflow-hidden cursor-pointer shadow-lg h-[250px] sm:h-full">
+                <img src="Assets/indeximg9" alt="City" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
+                    <span class="text-white font-black tracking-widest uppercase text-xs p-2 border-2 border-white">City Lights</span>
+                </div>
+            </div>
+
+            <div class="sm:col-span-1 sm:row-span-1 group relative rounded-[2.5rem] overflow-hidden cursor-pointer shadow-lg h-[250px] sm:h-full">
+                <img src="Assets/indeximg10" alt="Clouds" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-br from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-all flex items-end p-6">
+                    <i class="fa-solid fa-heart text-white text-2xl"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-20 flex flex-wrap justify-center lg:justify-between items-center gap-10 py-12 border-y border-slate-200 dark:border-slate-800">
+            <div class="flex flex-col items-center lg:items-start group">
+                <div class="flex items-baseline gap-1">
+                    <span class="text-5xl font-black dark:text-white group-hover:text-primary transition-colors">50</span>
+                    <span class="text-primary font-bold">K+</span>
+                </div>
+                <p class="text-slate-500 text-xs font-bold uppercase tracking-[0.2em] mt-2">Moments Captured</p>
+            </div>
+            
+            <div class="flex flex-col items-center lg:items-start group">
+                <div class="flex items-baseline gap-1">
+                    <span class="text-5xl font-black dark:text-white group-hover:text-primary transition-colors">120</span>
+                </div>
+                <p class="text-slate-500 text-xs font-bold uppercase tracking-[0.2em] mt-2">Daily Adventures</p>
+            </div>
+
+            <div class="flex flex-col items-center lg:items-start group">
+                <div class="flex items-baseline gap-1">
+                    <span class="text-5xl font-black dark:text-white group-hover:text-primary transition-colors">15</span>
+                </div>
+                <p class="text-slate-500 text-xs font-bold uppercase tracking-[0.2em] mt-2">Elite Aviators</p>
+            </div>
+
+            <div class="flex flex-col items-center lg:items-start group">
+                <div class="flex items-baseline gap-1">
+                    <span class="text-5xl font-black dark:text-white group-hover:text-primary transition-colors">4.9</span>
+                    <span class="text-yellow-500 text-2xl"><i class="fa-solid fa-star"></i></span>
+                </div>
+                <p class="text-slate-500 text-xs font-bold uppercase tracking-[0.2em] mt-2">Guest Satisfaction</p>
+            </div>
+        </div>
+
+        <div class="mt-16 text-center">
+            <a href="gallery.html">
+                  <button class="w-full sm:w-auto group relative px-12 py-5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full font-black text-lg transition-all shadow-2xl hover:bg-primary dark:hover:bg-primary dark:hover:text-white overflow-hidden">
+                <span class="relative z-10 flex items-center justify-center gap-3">
+                    🚀 Explore Full Gallery
+                </span>
+                <div class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+            </button>
+            </a>
+          
+        </div>
+    </div>
+</section>
+    <section class="py-24 bg-primary text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+        <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white"></path>
+        </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-extrabold mb-4">🗺 How Your Journey Begins</h2>
+            <p class="text-primary-100 opacity-90 max-w-xl mx-auto">From dreaming to flying in four simple steps. We handle the logistics; you enjoy the horizon.</p>
+        </div>
+        
+        <div class="relative">
+            <div class="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 border-t-2 border-dashed border-white/30 -translate-y-12"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative">
+                
+                <div class="group text-center">
+                    <div class="relative z-10 w-24 h-24 bg-white text-primary rounded-2xl flex items-center justify-center mx-auto text-3xl font-black mb-6 transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110 shadow-xl shadow-black/20">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span class="absolute -top-2 -right-2 w-8 h-8 bg-secondary text-white text-xs rounded-full flex items-center justify-center border-4 border-primary">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-secondary transition-colors">Choose Your Tour</h3>
+                    <p class="text-sm text-white/80 leading-relaxed px-4">Browse our curated collection of alpine, coastal, and urban flight routes.</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="relative z-10 w-24 h-24 bg-white text-primary rounded-2xl flex items-center justify-center mx-auto text-3xl font-black mb-6 transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110 shadow-xl shadow-black/20">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span class="absolute -top-2 -right-2 w-8 h-8 bg-secondary text-white text-xs rounded-full flex items-center justify-center border-4 border-primary">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-secondary transition-colors">Pick Date & Time</h3>
+                    <p class="text-sm text-white/80 leading-relaxed px-4">Select from our flexible sunrise, daytime, or sunset flight slots.</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="relative z-10 w-24 h-24 bg-white text-primary rounded-2xl flex items-center justify-center mx-auto text-3xl font-black mb-6 transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110 shadow-xl shadow-black/20">
+                        <i class="fa-solid fa-credit-card"></i>
+                        <span class="absolute -top-2 -right-2 w-8 h-8 bg-secondary text-white text-xs rounded-full flex items-center justify-center border-4 border-primary">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-secondary transition-colors">Instant Booking</h3>
+                    <p class="text-sm text-white/80 leading-relaxed px-4">Secure your seat via our encrypted portal and receive your e-ticket instantly.</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="relative z-10 w-24 h-24 bg-secondary text-white rounded-2xl flex items-center justify-center mx-auto text-3xl font-black mb-6 transition-all duration-500 group-hover:scale-125 shadow-xl shadow-black/20 animate-pulse">
+                        <i class="fa-solid fa-plane-departure"></i>
+                        <span class="absolute -top-2 -right-2 w-8 h-8 bg-white text-primary text-xs rounded-full flex items-center justify-center border-4 border-secondary">4</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-white transition-colors">Prepare for Takeoff</h3>
+                    <p class="text-sm text-white/80 leading-relaxed px-4">Arrive at the hangar 20 mins early, meet your pilot, and touch the sky.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mt-16 flex justify-center lg:hidden">
+            <div class="flex gap-2">
+                <div class="w-3 h-3 bg-white rounded-full"></div>
+                <div class="w-3 h-3 bg-white/30 rounded-full"></div>
+                <div class="w-3 h-3 bg-white/30 rounded-full"></div>
+                <div class="w-3 h-3 bg-white/30 rounded-full"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-500 overflow-hidden relative">
+    
+    <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] dark:opacity-[0.05] pointer-events-none">
+        <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,500 Q250,200 500,500 T1000,500" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="10,10" />
+        </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 dark:text-white">
+                Voices From The <span class="text-primary">Clouds</span>
+            </h2>
+            <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                Join over 10,000+ happy flyers who have seen the world through our wings.
+            </p>
+        </div>
+
+        <div class="flex flex-col md:grid md:grid-cols-3 gap-8">
+            
+            <div class="group bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/50 dark:shadow-none border border-transparent hover:border-primary/30 transition-all duration-500 hover:-translate-y-2">
+                <div class="flex gap-1 text-yellow-400 mb-6">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-slate-700 dark:text-slate-300 italic mb-8 leading-relaxed">
+                    “An absolutely incredible experience! The views were breathtaking and the pilot was extremely professional. We flew over the coast at sunset and I've never seen colors like that.”
+                </p>
+                <div class="flex items-center gap-4 border-t dark:border-slate-800 pt-6">
+                    <img src="Assets/indeximg11" alt="Sarah J." class="w-14 h-14 rounded-full border-2 border-primary/20">
+                    <div>
+                        <h4 class="font-bold dark:text-white">Sarah Jenkins</h4>
+                        <span class="text-xs text-primary font-bold uppercase tracking-widest">Verified Flyer • Coastal Tour</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group bg-primary p-8 rounded-[2rem] shadow-2xl shadow-primary/20 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden">
+                <i class="fa-solid fa-quote-right absolute top-6 right-8 text-white/10 text-7xl"></i>
+                
+                <div class="flex gap-1 text-white mb-6 relative z-10">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-white italic mb-8 leading-relaxed relative z-10 font-medium">
+                    “Perfect surprise gift for my partner. Smooth booking and unforgettable journey. The staff went above and beyond to help me coordinate the proposal at 5,000 feet!”
+                </p>
+                <div class="flex items-center gap-4 border-t border-white/20 pt-6 relative z-10">
+                    <img src="Assets/indeximg12" alt="Mark R." class="w-14 h-14 rounded-full border-2 border-white/50">
+                    <div>
+                        <h4 class="font-bold text-white">Mark Robinson</h4>
+                        <span class="text-xs text-blue-100 font-bold uppercase tracking-widest">Verified Flyer • Custom Charter</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-200/50 dark:shadow-none border border-transparent hover:border-primary/30 transition-all duration-500 hover:-translate-y-2">
+                <div class="flex gap-1 text-yellow-400 mb-6">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-slate-700 dark:text-slate-300 italic mb-8 leading-relaxed">
+                    “The mountain tour was spectacular. As a photographer, the pilot gave me perfect angles of the glaciers. Super smooth flight and high-end aircraft.”
+                </p>
+                <div class="flex items-center gap-4 border-t dark:border-slate-800 pt-6">
+                    <img src="Assets/indeximg13" alt="Elena V." class="w-14 h-14 rounded-full border-2 border-primary/20">
+                    <div>
+                        <h4 class="font-bold dark:text-white">Elena Vasquez</h4>
+                        <span class="text-xs text-primary font-bold uppercase tracking-widest">Verified Flyer • Alpine Route</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-20 flex flex-wrap justify-center gap-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
+            <div class="flex items-center gap-2 font-bold text-slate-500">
+                <i class="fa-brands fa-tripadvisor text-2xl"></i> TripAdvisor
+            </div>
+            <div class="flex items-center gap-2 font-bold text-slate-500">
+                <i class="fa-brands fa-google text-2xl"></i> Google Reviews
+            </div>
+            <div class="flex items-center gap-2 font-bold text-slate-500">
+                <i class="fa-solid fa-certificate text-2xl"></i> TrustPilot
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-24 bg-white dark:bg-slate-900 transition-colors duration-500 overflow-hidden relative">
+    <div class="absolute top-10 right-10 w-32 h-32 bg-yellow-400/10 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-10 left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="bg-slate-50 dark:bg-slate-800/50 rounded-[3rem] p-8 md:p-16 border border-slate-100 dark:border-slate-700 shadow-2xl overflow-hidden relative">
+            
+            <div class="absolute -top-10 -right-10 text-slate-200 dark:text-slate-700 rotate-12 opacity-50">
+                <i class="fa-solid fa-plane-up text-[200px]"></i>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                
+                <div class="relative z-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-400/10 text-yellow-600 dark:text-yellow-400 font-bold text-sm mb-6 border border-yellow-400/20">
+                        <i class="fa-solid fa-gift"></i> The Perfect Surprise
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 dark:text-white">
+                        Gift A <span class="text-primary text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Scenic Flight</span>
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg mb-10 leading-relaxed">
+                        Surprise your loved ones with an unforgettable perspective. Perfect for anniversaries, birthdays, and milestones. Our vouchers are valid for 2 years and fully transferable.
+                    </p>
+
+                    <div class="mb-10">
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">Choose Voucher Value:</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="px-6 py-3 rounded-xl border-2 border-primary bg-primary text-white font-bold transition-all shadow-lg shadow-primary/20">$150</button>
+                            <button class="px-6 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-primary dark:text-white font-bold transition-all hover:text-primary">$250</button>
+                            <button class="px-6 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-primary dark:text-white font-bold transition-all hover:text-primary">$500</button>
+                            <button class="px-6 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-primary dark:text-white font-bold transition-all hover:text-primary">Custom</button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="group flex items-center justify-center gap-3 px-8 py-4 bg-primary text-white rounded-2xl font-bold hover:bg-secondary transition-all shadow-xl shadow-primary/30">
+                            Buy Gift Voucher
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                        </button>
+                        <button class="px-8 py-4 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-2xl font-bold border border-slate-200 dark:border-slate-600 hover:bg-slate-50 transition-all">
+                            View Sample
+                        </button>
+                    </div>
+                </div>
+
+                <div class="relative perspective-1000 group">
+                    <div class="relative transform transition-all duration-700 group-hover:rotate-y-12 group-hover:rotate-x-12">
+                        <div class="w-full aspect-[1.6/1] bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 rounded-3xl p-8 text-white shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/10 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                            
+                            <div class="flex justify-between items-start mb-12">
+                                <div class="text-2xl font-black tracking-tighter italic">SKYHIGH</div>
+                                <i class="fa-solid fa-plane text-3xl opacity-50"></i>
+                            </div>
+                            
+                            <div class="mb-8">
+                                <p class="text-xs uppercase tracking-[0.3em] text-blue-300 mb-1">Gift Experience Voucher</p>
+                                <h4 class="text-3xl font-bold tracking-tight">One Scenic Adventure</h4>
+                            </div>
+
+                            <div class="flex justify-between items-end">
+                                <div>
+                                    <p class="text-[10px] uppercase text-slate-400">Valid Until</p>
+                                    <p class="font-mono font-bold text-sm">DEC 2027</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-[10px] uppercase text-slate-400">Voucher Value</p>
+                                    <p class="text-2xl font-black text-yellow-400">$150.00</p>
+                                </div>
+                            </div>
+
+                            <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-yellow-400/20 rounded-full blur-2xl"></div>
+                        </div>
+
+                        <div class="hidden md:block absolute -bottom-6 -right-6 w-full h-full bg-primary/20 rounded-3xl -z-10 border border-primary/20 translate-x-4 translate-y-4 transition-transform group-hover:translate-x-8 group-hover:translate-y-8"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .perspective-1000 { perspective: 1000px; }
+    .rotate-y-12 { transform: rotateY(-15deg); }
+    .rotate-x-12 { transform: rotateX(10deg); }
+</style>
+<section class="py-20 relative overflow-hidden bg-slate-900 transition-colors duration-500">
+    
+    <div class="absolute inset-0 z-0">
+        <img src="Assets/indeximg14" 
+             alt="Aerial Horizon" 
+             class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+            
+            <div class="lg:w-3/5 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 text-primary font-bold text-sm mb-6 border border-primary/30 animate-pulse">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                    </span>
+                    Limited Slots Available for This Weekend
+                </div>
+                <h2 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+                    Ready To <span class="text-primary">Take Off?</span>
+                </h2>
+                <p class="text-slate-300 text-lg md:text-xl mb-10 max-w-xl mx-auto lg:mx-0">
+                    Book your scenic flight today and create memories that last forever. Your window seat is waiting for you.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
+                    <a href="booking.html">
+  <button class="group relative px-10 py-5 bg-primary text-white rounded-2xl font-black text-xl transition-all shadow-2xl shadow-primary/40 hover:scale-105 active:scale-95 overflow-hidden">
+                        <span class="relative z-10 flex items-center justify-center gap-3">
+                            👉 Book Now <i class="fa-solid fa-plane-departure group-hover:translate-x-2 group-hover:-translate-y-1 transition-transform"></i>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                    </button>
+                    </a>
+                  
+                    <a href="contact.html">
+                          <button class="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl font-bold hover:bg-white hover:text-slate-900 transition-all">
+                        Contact Our Team
+                    </button>
+                    </a>
+                  
+                </div>
+            </div>
+
+            <div class="lg:w-2/5 w-full">
+                <div class="bg-white/10 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 shadow-2xl">
+                    <h3 class="text-white font-bold text-xl mb-6">Direct Flight Assistance</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors cursor-pointer group">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase font-bold">Priority Booking</p>
+                                <p class="text-white font-medium text-lg">+1 (800) SKY-HIGH</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors cursor-pointer group">
+                            <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 group-hover:bg-green-500 group-hover:text-white transition-all">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase font-bold">24/7 Live Chat</p>
+                                <p class="text-white font-medium text-lg">Chat with a Pilot</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+                        <div class="flex -space-x-3">
+                            <img src="https://i.pravatar.cc/100?u=1" class="w-10 h-10 rounded-full border-2 border-slate-800" alt="User">
+                            <img src="https://i.pravatar.cc/100?u=2" class="w-10 h-10 rounded-full border-2 border-slate-800" alt="User">
+                            <img src="https://i.pravatar.cc/100?u=3" class="w-10 h-10 rounded-full border-2 border-slate-800" alt="User">
+                        </div>
+                        <p class="text-xs text-slate-400 font-medium">12 people booking now</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] transform rotate-180">
+        <svg class="relative block w-[calc(100%+1.3px)] h-[50px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#F8FAFC"></path>
+        </svg>
+    </div>
+</section>
+
+    <footer class="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            
+            <div class="space-y-6">
+                <div>
+                    <a href="index.html">
+                     <div class="text-2xl font-black text-primary tracking-tighter">SKY<span class="text-slate-400">HIGH</span></div>
+                    </a>
+                   
+                    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Redefining travel through the lens of flight. Your window seat to the world's wonders.
+                    </p>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-white hover:bg-[#E1306C] hover:border-[#E1306C] transition-all duration-300 hover:-translate-y-1">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 hover:-translate-y-1">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    <!-- </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-white hover:bg-[#000000] hover:border-[#000000] transition-all duration-300 hover:-translate-y-1">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a> -->
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-white hover:bg-[#FF0000] hover:border-[#FF0000] transition-all duration-300 hover:-translate-y-1">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8 lg:col-span-2">
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-slate-500 hover:text-primary transition-colors">Home1</a></li>
+                        <li><a href="home2.html" class="text-slate-500 hover:text-primary transition-colors">Home2</a></li>
+                        <li><a href="Gallery.html" class="text-slate-500 hover:text-primary transition-colors">Gallery</a></li>
+                        <li><a href="login.html" class="text-slate-500 hover:text-primary transition-colors">Book Now</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="about.html" class="text-slate-500 hover:text-primary transition-colors">About</a></li>
+                        <li><a href="contact.html" class="text-slate-500 hover:text-primary transition-colors">Contact</a></li>
+                        <li><a href="404error.html" class="text-slate-500 hover:text-primary transition-colors">404 Page</a></li>
+                        <li><a href="comingsoon.html" class="text-slate-500 hover:text-primary transition-colors">Coming Soon</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">Stay Updated</h4>
+                <p class="text-xs text-slate-500">New routes delivered to your inbox.</p>
+                <form class="relative group">
+                    <input type="email" placeholder="Your email" class="w-full pl-4 pr-12 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                    <button class="absolute right-1.5 top-1.5 bottom-1.5 px-3 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+                </form>
+                <div class="flex items-center gap-2 text-[10px] text-slate-400">
+                    <i class="fa-solid fa-shield-halved"></i> No spam. Just flight logs.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">
+                © 2026 SKYHIGH SCENIC TOURS. ALL RIGHTS RESERVED.
+            </p>
+            <div class="flex gap-6">
+                <a href="#" class="text-[11px] text-slate-400 hover:text-primary transition-colors uppercase tracking-widest">Privacy</a>
+                <a href="#" class="text-[11px] text-slate-400 hover:text-primary transition-colors uppercase tracking-widest">Terms</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+    <script>
+    // --- INITIALIZATION (Run on Page Load) ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Check and Apply Dark Mode
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // 2. Check and Apply Direction (LTR/RTL)
+        const savedDir = localStorage.getItem('direction') || 'ltr';
+        const htmlTag = document.getElementById('root-html'); // Ensure your <html> tag has this ID
+        const dirText = document.getElementById('dir-text');
+
+        if (htmlTag) {
+            htmlTag.setAttribute('dir', savedDir);
+        }
+        if (dirText) {
+            dirText.innerText = savedDir.toUpperCase();
+        }
+    });
+
+    // --- TOGGLE FUNCTIONS ---
+
+    function toggleDarkMode() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        // Save choice to local storage
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    function toggleDir() {
+        const htmlTag = document.getElementById('root-html');
+        const dirText = document.getElementById('dir-text');
+        const currentDir = htmlTag.getAttribute('dir');
+        
+        const newDir = (currentDir === 'ltr') ? 'rtl' : 'ltr';
+        
+        // Apply
+        htmlTag.setAttribute('dir', newDir);
+        if (dirText) dirText.innerText = newDir.toUpperCase();
+        
+        // Save choice to local storage
+        localStorage.setItem('direction', newDir);
+    }
+</script>
+<script>
+    // --- Mobile Menu Logic ---
+    function toggleMobileMenu() {
+        const menuOverlay = document.getElementById('mobile-menu');
+        const sidebar = document.getElementById('mobile-sidebar');
+        
+        if (menuOverlay.classList.contains('hidden')) {
+            menuOverlay.classList.remove('hidden');
+            setTimeout(() => {
+                menuOverlay.classList.add('opacity-100');
+                sidebar.classList.remove('translate-x-full');
+            }, 10);
+        } else {
+            menuOverlay.classList.remove('opacity-100');
+            sidebar.classList.add('translate-x-full');
+            setTimeout(() => menuOverlay.classList.add('hidden'), 300);
+        }
+    }
+
+    // --- Navbar Scroll Effect ---
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('main-nav');
+        if (window.scrollY > 50) {
+            nav.classList.add('py-2', 'shadow-xl');
+            nav.classList.remove('py-4');
+        } else {
+            nav.classList.remove('py-2', 'shadow-xl');
+            nav.classList.add('py-4');
+        }
+    });
+
+    // --- Enhanced Local Storage Logic ---
+    function applyPreferences() {
+        // Theme
+        const theme = localStorage.getItem('theme') || 'light';
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+        
+        // Direction
+        const dir = localStorage.getItem('direction') || 'ltr';
+        document.documentElement.setAttribute('dir', dir);
+        document.getElementById('dir-text').innerText = dir.toUpperCase();
+        document.getElementById('dir-text-mobile').innerText = dir.toUpperCase();
+    }
+
+    function toggleDarkMode() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    function toggleDir() {
+        const html = document.documentElement;
+        const currentDir = html.getAttribute('dir');
+        const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+        
+        html.setAttribute('dir', newDir);
+        localStorage.setItem('direction', newDir);
+        applyPreferences(); // Update text labels
+    }
+
+    document.addEventListener('DOMContentLoaded', applyPreferences);
+</script>
+</body>
+</html>

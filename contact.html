@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="main-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Assets/plane (1).png">
+    <title>SkyHigh | Scenic Flight & Tours</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0ea5e9',
+                        secondary: '#0369a1',
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+</script>
+    <style>
+        .card-hover:hover .hover-zoom { transform: scale(1.1); }
+        transition-all { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+
+ 
+
+
+<nav class="fixed w-full z-50 transition-all duration-300 bg-white dark:bg-slate-950 lg:bg-white/80 lg:dark:bg-slate-950/80 lg:backdrop-blur-lg border-b border-slate-200 dark:border-slate-800" id="main-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+            
+            <div class="flex-shrink-0 flex items-center gap-2">
+                <a href="index.html">
+                   <div class="text-2xl font-black text-primary tracking-tighter uppercase">SKY<span class="text-slate-400">HIGH</span></div>
+
+
+                </a>
+            </div>
+
+           <div class="hidden lg:flex items-center lg:gap-x-4 xl:gap-x-8">
+    
+    <a href="index.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Home 1
+    </a>
+
+    <a href="home2.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Home 2
+    </a>
+
+    <a href="service.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Services
+    </a>
+
+    <a href="gallery.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Gallery
+    </a>
+
+    <a href="about.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        About
+    </a>
+
+    <a href="contact.html" class="nav-link font-bold text-[11px] xl:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary whitespace-nowrap transition-all">
+        Contact
+    </a>
+
+    <div class="relative group">
+        <button class="flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors font-bold text-[11px] xl:text-sm uppercase tracking-widest outline-none whitespace-nowrap">
+            <i class="fa-solid fa-circle-user text-base xl:text-lg"></i>
+            <span>Dashboard</span>
+            <i class="fa-solid fa-chevron-down text-[9px] group-hover:rotate-180 transition-transform"></i>
+        </button>
+        
+        <div class="absolute right-0 mt-3 w-48 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-50">
+            <a href="user.html" class="block px-4 py-2.5 text-xs xl:text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors">
+                <i class="fa-solid fa-user-gear mr-2 opacity-50"></i> My Profile
+            </a>
+            <hr class="my-1 border-slate-100 dark:border-slate-800">
+            <!-- <a href="/login.html" class="block px-4 py-2.5 text-xs xl:text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+                <i class="fa-solid fa-power-off mr-2 opacity-50"></i> Logout
+            </a> -->
+        </div>
+    </div>
+</div>
+
+            <div class="hidden lg:flex items-center gap-4">
+                <button onclick="toggleDir()" class="p-2 text-xs font-black bg-slate-100 dark:bg-slate-800 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-primary hover:text-white transition-all">
+                    <span id="dir-text">LTR</span>
+                </button>
+                <button onclick="toggleDarkMode()" class="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-yellow-500 hover:text-white transition-all">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+                <a href="login.html" class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-full shadow-lg shadow-primary/30 hover:bg-secondary transition-all">
+                    Book Now
+                </a>
+            </div>
+
+            <div class="lg:hidden flex items-center gap-2">
+                <button onclick="toggleDarkMode()" class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+                <button onclick="toggleMobileMenu()" class="text-slate-900 dark:text-white p-2" id="menu-btn">
+                    <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[60] hidden transition-opacity duration-300 opacity-0">
+        <div class="absolute right-0 top-0 h-full w-72 bg-white dark:bg-slate-900 shadow-2xl p-8 overflow-y-auto max-h-screen transform translate-x-full transition-transform duration-300 custom-scrollbar" id="mobile-sidebar">
+            <div class="flex justify-between items-center mb-10">
+                <a href="index.html">
+                   <div class="text-xl font-black text-primary tracking-tighter">SKYHIGH</div>
+                </a>
+
+             
+                <button onclick="toggleMobileMenu()" class="text-slate-500 hover:text-red-500 transition-colors">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+            
+            <nav class="flex flex-col gap-5">
+                <div class="flex items-center gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+                    <i class="fa-solid fa-circle-user text-3xl text-primary"></i>
+                    <div>
+                        <p class="text-sm font-bold dark:text-white">Alex Rivera</p>
+                        <p class="text-[10px] text-slate-500 uppercase">Premium Member</p>
+                    </div>
+                </div>
+
+                <a href="index.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Home 1</a>
+                <a href="home2.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Home 2</a>
+                <a href="service.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Services</a>
+                
+                <details class="group">
+                    <summary class="flex justify-between items-center text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 cursor-pointer list-none">
+                        Dashboard
+                        <i class="fa-solid fa-chevron-down text-sm group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="flex flex-col gap-3 pl-4 pt-3 pb-2 text-sm text-slate-500">
+                        <a href="user.html" class="hover:text-primary transition-colors">My Profile</a>
+                        <!-- <a href="#" class="hover:text-primary transition-colors">Flight History</a> -->
+                        <!-- <a href="#" class="hover:text-primary transition-colors">Settings</a> -->
+                        <!-- <a href="/login.html" class="text-red-500">Logout</a> -->
+                    </div>
+                </details>
+
+                <a href="gallery.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Gallery</a>
+                <a href="about.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">About</a>
+                <a href="contact.html" class="text-lg font-bold text-slate-600 dark:text-slate-300 py-2 border-b border-slate-50 dark:border-slate-800/50 hover:text-primary transition-colors">Contact</a>
+                
+                <div class="pt-6 pb-10 flex flex-col gap-4">
+                    <button onclick="toggleDir()" class="flex items-center justify-between px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 font-bold text-slate-500">
+                        Language <span id="dir-text-mobile" class="bg-primary text-white px-2 py-0.5 rounded text-[10px]">LTR</span>
+                    </button>
+                    <a href="login.html" class="w-full py-4 bg-primary text-white text-center rounded-2xl font-bold shadow-xl shadow-primary/20 hover:bg-secondary transition-all">
+                        Book Now
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+</nav>
+<style>
+  /* Styling for the active link */
+.nav-link-active {
+    color: #4f46e5 !important; /* indigo-600 */
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* The animated underline effect */
+.nav-link-active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #4f46e5, #818cf8);
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(79, 70, 229, 0.4);
+}
+
+.dark .nav-link-active {
+    color: #818cf8 !important; /* indigo-400 */
+}
+</style> 
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+    // 1. Identify the current page (e.g., 'Gallery.html' or 'index.html')
+    let path = window.location.pathname.split("/").pop();
+    
+    // Handle the root path (if user is just on domain.com/)
+    if (path === '' || path === '/') path = 'index.html';
+
+    // 2. Select all links in both desktop and mobile menus
+    const allLinks = document.querySelectorAll('.nav-link, #mobile-menu a');
+
+    allLinks.forEach(link => {
+        // Get the href attribute of the link
+        const href = link.getAttribute('href');
+
+        if (href === path) {
+            // Apply Active Classes
+            link.classList.add('nav-link-active');
+            
+            // Remove the default 'slate' colors so the active color shows
+            link.classList.remove('text-slate-500', 'text-slate-600', 'dark:text-slate-400', 'dark:text-slate-300');
+            
+            // If it's a mobile link, ensure it stays bold and high-contrast
+            if (link.classList.contains('text-lg')) {
+                link.classList.add('text-primary');
+            }
+        }
+    });
+});
+</script>
+<br>
+<br>
+
+<section class="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-slate-50 dark:bg-slate-950 overflow-hidden transition-colors duration-500">
+    
+    <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]" 
+             style="background-image: radial-gradient(#0ea5e9 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80" 
+             class="w-full h-full object-cover opacity-10 dark:opacity-20 mix-blend-multiply dark:mix-blend-overlay transition-transform duration-1000 transform hover:scale-105" 
+             alt="Ground Crew">
+        
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-50/40 via-slate-50/90 to-slate-50 dark:from-slate-950/40 dark:via-slate-950/90 dark:to-slate-950"></div>
+    </div>
+
+    <div class="absolute top-20 right-[10%] hidden xl:block opacity-20 dark:opacity-40 animate-bounce group">
+        <div class="text-[120px] font-black text-slate-200 dark:text-slate-800 select-none tracking-tighter">01</div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center">
+        
+        <div class="inline-flex items-center gap-3 px-4 py-2 mb-6 md:mb-8 bg-white dark:bg-slate-900 shadow-xl shadow-primary/5 rounded-full border border-slate-200 dark:border-slate-800 hover:border-primary/40 transition-all cursor-default group">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            <span class="text-[9px] md:text-[10px] font-black tracking-[0.2em] md:tracking-[0.3em] text-slate-600 dark:text-slate-300 uppercase">
+                Status: Signal Strong
+            </span>
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-slate-900 dark:text-white mb-6 md:mb-8 tracking-tighter uppercase italic leading-[0.95] md:leading-[0.9]">
+            Ready for <br class="hidden sm:block"> 
+            <span class="relative inline-block text-primary">
+                Communication
+                <svg class="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-3 text-primary/20" viewBox="0 0 100 10" preserveAspectRatio="none">
+                    <path d="M0 5 Q 25 0, 50 5 T 100 5" fill="none" stroke="currentColor" stroke-width="4" />
+                </svg>
+            </span>
+        </h1>
+
+        <p class="max-w-xl md:max-w-2xl mx-auto text-slate-500 dark:text-slate-400 text-base md:text-xl font-medium leading-relaxed mb-10 md:mb-12 px-2">
+            Whether you have questions about a route or want to plan a custom charter, our 
+            <span class="text-slate-900 dark:text-white border-b-2 border-primary/30">ground team</span> 
+            is standing by to assist your departure.
+        </p>
+
+        <div class="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
+            <a href="#form" class="w-full sm:w-auto px-10 py-4 bg-primary text-white font-black rounded-2xl uppercase tracking-widest text-xs shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-1 transition-all text-center">
+                Start Now
+            </a>
+            <div class="w-full sm:w-auto flex items-center justify-center gap-4 px-6 py-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 text-slate-400">
+                <i class="fa-solid fa-tower-broadcast animate-pulse text-primary"></i>
+                <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Freq: 121.5 MHz</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 opacity-30 hover:opacity-100 transition-opacity">
+        <div class="w-5 h-8 border-2 border-slate-400 dark:border-slate-600 rounded-full flex justify-center p-1">
+            <div class="w-1 h-1 bg-primary rounded-full animate-bounce"></div>
+        </div>
+    </div>
+</section>
+<section class="py-12 bg-slate-950 -mt-10 relative z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="group p-8 rounded-[2.5rem] bg-slate-900 border border-white/5 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
+                <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </div>
+                <h4 class="text-white font-bold mb-2 uppercase tracking-widest text-sm">Call Dispatch</h4>
+                <p class="text-slate-400 text-sm mb-4">Available 24/7 for booking support.</p>
+                <a href="tel:+1800SKYHIGH" class="text-lg font-black text-white hover:text-primary transition-colors">+1 (800) SKY-HIGH</a>
+            </div>
+
+            <div class="group p-8 rounded-[2.5rem] bg-slate-900 border border-white/5 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
+                <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <h4 class="text-white font-bold mb-2 uppercase tracking-widest text-sm">Flight Inquiry</h4>
+                <p class="text-slate-400 text-sm mb-4">We reply within 6 flight hours.</p>
+                <a href="mailto:info@skyhigh.com" class="text-lg font-black text-white hover:text-primary transition-colors">info@skyhigh.com</a>
+            </div>
+
+            <div class="group p-8 rounded-[2.5rem] bg-slate-900 border border-white/5 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
+                <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h4 class="text-white font-bold mb-2 uppercase tracking-widest text-sm">Our Hangar</h4>
+                <p class="text-slate-400 text-sm mb-4">Skyline Airfield, Terminal B</p>
+                <p class="text-lg font-black text-white uppercase tracking-tighter italic">New York, NY 10001</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-white dark:bg-slate-950 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
+            
+            <div>
+                <h2 class="text-4xl font-black mb-6 dark:text-white uppercase italic tracking-tighter">Submit Your <br><span class="text-primary">Flight Request</span></h2>
+                <p class="text-slate-500 dark:text-slate-400 mb-10 leading-relaxed">
+                    Planning a proposal? A corporate retreat? Or just a weekend escape? Provide your details and our flight coordinators will craft your custom itinerary.
+                </p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary font-bold">1</div>
+                        <p class="text-sm font-bold dark:text-slate-300">Choose your preferred aircraft</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary font-bold">2</div>
+                        <p class="text-sm font-bold dark:text-slate-300">Select date and passenger count</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary font-bold">3</div>
+                        <p class="text-sm font-bold dark:text-slate-300">Receive quote within 12 hours</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-8 md:p-12 rounded-[3rem] bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-2xl">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Full Name</label>
+                            <input type="text" placeholder="John Doe" class="w-full px-6 py-4 rounded-2xl bg-white dark:bg-slate-800 border-none focus:ring-2 focus:ring-primary outline-none transition-all dark:text-white">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Email Address</label>
+                            <input type="email" placeholder="john@example.com" class="w-full px-6 py-4 rounded-2xl bg-white dark:bg-slate-800 border-none focus:ring-2 focus:ring-primary outline-none transition-all dark:text-white">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Service Type</label>
+                        <select class="w-full px-6 py-4 rounded-2xl bg-white dark:bg-slate-800 border-none focus:ring-2 focus:ring-primary outline-none transition-all dark:text-white appearance-none">
+                            <option>Scenic Tour</option>
+                            <option>Private Charter</option>
+                            <option>Special Occasion</option>
+                            <option>Photography Flight</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Your Message</label>
+                        <textarea rows="4" placeholder="Tell us about your dream flight..." class="w-full px-6 py-4 rounded-2xl bg-white dark:bg-slate-800 border-none focus:ring-2 focus:ring-primary outline-none transition-all dark:text-white"></textarea>
+                    </div>
+                    <button class="w-full py-5 bg-primary text-white font-black rounded-2xl uppercase tracking-[0.2em] shadow-xl shadow-primary/30 hover:bg-secondary transition-all flex items-center justify-center gap-3">
+                        Send Message <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="h-[450px] w-full bg-slate-200 dark:bg-slate-800 relative grayscale hover:grayscale-0 transition-all duration-1000">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.21515280953!2d-73.985428!3d40.748817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQ0JzU1LjgiTiA3M8KwNTknMDcuNSJX!5e0!3m2!1sen!2sus!4v1600000000000!5m2!1sen!2sus" 
+        class="w-full h-full border-none" 
+        allowfullscreen="" 
+        loading="lazy">
+    </iframe>
+    
+    <div class="absolute top-10 left-10 hidden md:block p-6 bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-100 dark:border-slate-800 max-w-xs">
+        <h5 class="font-bold dark:text-white mb-2 italic uppercase">Main Airfield</h5>
+        <p class="text-xs text-slate-500 leading-relaxed">Our primary hangar is located at Terminal B. Please arrive 30 minutes before your scheduled departure.</p>
+        <a href="#" class="mt-4 inline-block text-[10px] font-black text-primary uppercase border-b-2 border-primary">Get Directions</a>
+    </div>
+</section>
+      <footer class="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            
+            <div class="space-y-6">
+                <div>
+                    <a href="index.html">
+                     <div class="text-2xl font-black text-primary tracking-tighter">SKY<span class="text-slate-400">HIGH</span></div>
+                    </a>
+                   
+                    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Redefining travel through the lens of flight. Your window seat to the world's wonders.
+                    </p>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-white hover:bg-[#E1306C] hover:border-[#E1306C] transition-all duration-300 hover:-translate-y-1">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 hover:-translate-y-1">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    <!-- </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-white hover:bg-[#000000] hover:border-[#000000] transition-all duration-300 hover:-translate-y-1">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a> -->
+                    <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-white hover:bg-[#FF0000] hover:border-[#FF0000] transition-all duration-300 hover:-translate-y-1">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8 lg:col-span-2">
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-slate-500 hover:text-primary transition-colors">Home1</a></li>
+                        <li><a href="home2.html" class="text-slate-500 hover:text-primary transition-colors">Home2</a></li>
+                        <li><a href="Gallery.html" class="text-slate-500 hover:text-primary transition-colors">Gallery</a></li>
+                        <li><a href="login.html" class="text-slate-500 hover:text-primary transition-colors">Book Now</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="about.html" class="text-slate-500 hover:text-primary transition-colors">About</a></li>
+                        <li><a href="contact.html" class="text-slate-500 hover:text-primary transition-colors">Contact</a></li>
+                        <li><a href="404error.html" class="text-slate-500 hover:text-primary transition-colors">404 Page</a></li>
+                        <li><a href="comingsoon.html" class="text-slate-500 hover:text-primary transition-colors">Coming Soon</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">Stay Updated</h4>
+                <p class="text-xs text-slate-500">New routes delivered to your inbox.</p>
+                <form class="relative group">
+                    <input type="email" placeholder="Your email" class="w-full pl-4 pr-12 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                    <button class="absolute right-1.5 top-1.5 bottom-1.5 px-3 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+                </form>
+                <div class="flex items-center gap-2 text-[10px] text-slate-400">
+                    <i class="fa-solid fa-shield-halved"></i> No spam. Just flight logs.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">
+                © 2026 SKYHIGH SCENIC TOURS. ALL RIGHTS RESERVED.
+            </p>
+            <div class="flex gap-6">
+                <a href="#" class="text-[11px] text-slate-400 hover:text-primary transition-colors uppercase tracking-widest">Privacy</a>
+                <a href="#" class="text-[11px] text-slate-400 hover:text-primary transition-colors uppercase tracking-widest">Terms</a>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+    // --- INITIALIZATION (Run on Page Load) ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Check and Apply Dark Mode
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // 2. Check and Apply Direction (LTR/RTL)
+        const savedDir = localStorage.getItem('direction') || 'ltr';
+        const htmlTag = document.getElementById('root-html'); // Ensure your <html> tag has this ID
+        const dirText = document.getElementById('dir-text');
+
+        if (htmlTag) {
+            htmlTag.setAttribute('dir', savedDir);
+        }
+        if (dirText) {
+            dirText.innerText = savedDir.toUpperCase();
+        }
+    });
+
+    // --- TOGGLE FUNCTIONS ---
+
+    function toggleDarkMode() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        // Save choice to local storage
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    function toggleDir() {
+        const htmlTag = document.getElementById('root-html');
+        const dirText = document.getElementById('dir-text');
+        const currentDir = htmlTag.getAttribute('dir');
+        
+        const newDir = (currentDir === 'ltr') ? 'rtl' : 'ltr';
+        
+        // Apply
+        htmlTag.setAttribute('dir', newDir);
+        if (dirText) dirText.innerText = newDir.toUpperCase();
+        
+        // Save choice to local storage
+        localStorage.setItem('direction', newDir);
+    }
+</script>
+<script>
+    // --- Mobile Menu Logic ---
+    function toggleMobileMenu() {
+        const menuOverlay = document.getElementById('mobile-menu');
+        const sidebar = document.getElementById('mobile-sidebar');
+        
+        if (menuOverlay.classList.contains('hidden')) {
+            menuOverlay.classList.remove('hidden');
+            setTimeout(() => {
+                menuOverlay.classList.add('opacity-100');
+                sidebar.classList.remove('translate-x-full');
+            }, 10);
+        } else {
+            menuOverlay.classList.remove('opacity-100');
+            sidebar.classList.add('translate-x-full');
+            setTimeout(() => menuOverlay.classList.add('hidden'), 300);
+        }
+    }
+
+    // --- Navbar Scroll Effect ---
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('main-nav');
+        if (window.scrollY > 50) {
+            nav.classList.add('py-2', 'shadow-xl');
+            nav.classList.remove('py-4');
+        } else {
+            nav.classList.remove('py-2', 'shadow-xl');
+            nav.classList.add('py-4');
+        }
+    });
+
+    // --- Enhanced Local Storage Logic ---
+    function applyPreferences() {
+        // Theme
+        const theme = localStorage.getItem('theme') || 'light';
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+        
+        // Direction
+        const dir = localStorage.getItem('direction') || 'ltr';
+        document.documentElement.setAttribute('dir', dir);
+        document.getElementById('dir-text').innerText = dir.toUpperCase();
+        document.getElementById('dir-text-mobile').innerText = dir.toUpperCase();
+    }
+
+    function toggleDarkMode() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    function toggleDir() {
+        const html = document.documentElement;
+        const currentDir = html.getAttribute('dir');
+        const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+        
+        html.setAttribute('dir', newDir);
+        localStorage.setItem('direction', newDir);
+        applyPreferences(); // Update text labels
+    }
+
+    document.addEventListener('DOMContentLoaded', applyPreferences);
+</script>
+</body>
+</html>

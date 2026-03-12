@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="root-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Assets/plane (1).png">
+    <title>SkyHigh | Adaptive Mission Control</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: '#0ea5e9', secondary: '#0f172a' },
+                    animation: { 
+                        'spin-slow': 'spin 12s linear infinite', 
+                        'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
+                        'pulse-soft': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body, nav, div, section, h1, h2, h3, h4, p, span, button, input, aside {
+            transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 10px; }
+    </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-slate-950 font-sans min-h-screen custom-scrollbar overflow-x-hidden">
+
+    <div class="fixed inset-0 opacity-[0.05] dark:opacity-[0.1] pointer-events-none z-0" 
+         style="background-image: radial-gradient(circle, #0ea5e9 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+    <aside class="fixed left-0 top-0 h-screen w-64 hidden lg:flex flex-col py-8 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-[60] transition-all duration-300">
+        <div class="px-6 mb-10">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/30 group-hover:rotate-12 transition-transform">
+                    <i class="fa-solid fa-plane-up"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tighter italic">SKY<span class="text-primary">HIGH</span></span>
+                    <span class="text-[8px] text-slate-400 font-bold uppercase tracking-[0.2em]">Mission Control</span>
+                </div>
+            </a>
+        </div>
+
+        <nav class="flex-1 px-4 space-y-2">
+            <p class="px-2 pb-2 text-[9px] font-black text-slate-400 uppercase tracking-widest">Main Deck</p>
+            <a href="#" class="flex items-center justify-between px-4 py-3 rounded-xl bg-primary/10 text-primary group">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-gauge-high text-sm"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider">Dashboard</span>
+                </div>
+                <span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-all">
+                <i class="fa-solid fa-jet-fighter text-sm"></i>
+                <span class="text-xs font-bold uppercase tracking-wider">Fleet Status</span>
+            </a>
+            <a href="#" class="flex items-center justify-between px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-all">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-chart-line text-sm"></i>
+                    <span class="text-xs font-bold uppercase tracking-wider">Analytics</span>
+                </div>
+                <span class="text-[9px] bg-green-500/10 text-green-500 px-1.5 py-0.5 rounded-md font-black">+12%</span>
+            </a>
+        </nav>
+
+        <div class="px-4 space-y-2 mt-auto">
+            <hr class="border-slate-100 dark:border-slate-800 mb-4 mx-2">
+            <button onclick="toggleDir()" class="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 hover:text-primary transition-all">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-globe text-sm"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest">Orientation</span>
+                </div>
+                <span id="dir-text" class="text-[10px] font-black bg-white dark:bg-slate-700 px-2 py-0.5 rounded shadow-sm">LTR</span>
+            </button>
+            <button onclick="toggleDarkMode()" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-all">
+                <i class="fa-solid fa-circle-half-stroke text-sm"></i>
+                <span class="text-[10px] font-black uppercase tracking-widest">Interface Theme</span>
+            </button>
+           <button onclick="openLogoutModal()" 
+   class="group w-full flex items-center justify-between px-5 py-4 rounded-2xl border border-red-500/20 bg-red-500/5 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300">
+    <div class="flex items-center gap-3">
+        <i class="fa-solid fa-power-off text-sm"></i>
+        <span class="text-[10px] font-black uppercase tracking-[0.2em]">Initiate Logout</span>
+    </div>
+    <i class="fa-solid fa-triangle-exclamation animate-pulse"></i>
+</button>
+
+<div id="logout-modal" class="fixed inset-0 z-[100] hidden items-center justify-center px-4">
+    <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-md"></div>
+    
+    <div class="relative w-full max-w-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-2xl text-center transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
+        
+        <div class="w-16 h-16 bg-red-500/10 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fa-solid fa-shield-halved text-2xl"></i>
+        </div>
+
+        <h3 class="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tighter italic mb-2">
+            Confirm Disconnect?
+        </h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">
+            You are about to terminate your flight session. All active telemetry data will be synced to your logbook.
+        </p>
+
+        <div class="grid grid-cols-2 gap-4">
+            <button onclick="closeLogoutModal()" 
+                class="py-4 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] font-black uppercase tracking-widest text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                Cancel
+            </button>
+            
+            <a href="login.html" 
+                class="py-4 rounded-xl bg-red-500 text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-red-500/30 hover:bg-red-600 transition-all">
+                Yes, Logout
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('logout-modal');
+    const content = document.getElementById('modal-content');
+
+    function openLogoutModal() {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        // Small timeout to allow the transition to trigger
+        setTimeout(() => {
+            content.classList.remove('scale-95', 'opacity-0');
+            content.classList.add('scale-100', 'opacity-100');
+        }, 10);
+    }
+
+    function closeLogoutModal() {
+        content.classList.remove('scale-100', 'opacity-100');
+        content.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }, 300);
+    }
+</script>
+        </div>
+    </aside>
+
+    <nav class="lg:hidden fixed top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 z-50">
+        <div class="px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white text-xs">
+                    <i class="fa-solid fa-plane-up"></i>
+                </div>
+                <div class="text-sm font-black text-slate-900 dark:text-white uppercase italic tracking-tighter">SKY<span class="text-primary">HIGH</span></div>
+            </div>
+            <button onclick="toggleMobileMenu()" class="p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-[70] hidden opacity-0 transition-opacity duration-300">
+        <div class="absolute right-0 top-0 h-full w-72 bg-white dark:bg-slate-900 p-8 transform translate-x-full transition-transform duration-300 shadow-2xl" id="mobile-sidebar">
+            <div class="flex justify-between items-center mb-10">
+                <span class="font-black text-primary italic uppercase text-xs">Navigation</span>
+                <button onclick="toggleMobileMenu()" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 dark:bg-slate-800 text-slate-400">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+           <div class="flex flex-col gap-4">
+    <a href="#" class="flex items-center gap-4 p-4 bg-primary/10 text-primary rounded-2xl font-black uppercase text-[10px]">
+        <i class="fa-solid fa-gauge-high"></i> Dashboard
+    </a>
+    <a href="#" class="flex items-center gap-4 p-4 text-slate-500 dark:text-slate-400 font-black uppercase text-[10px] hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl transition-all">
+        <i class="fa-solid fa-jet-fighter"></i> Fleet Status
+    </a>
+
+    <hr class="border-slate-100 dark:border-slate-800 my-2">
+
+    <button onclick="toggleDarkMode()" class="flex items-center gap-3 text-left text-[10px] font-black uppercase text-slate-500 p-4 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl transition-all">
+        <i class="fa-solid fa-moon"></i> Dark Mode
+    </button>
+    <button onclick="toggleDir()" class="flex items-center gap-3 text-left text-[10px] font-black uppercase text-slate-500 p-4 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl transition-all">
+        <i class="fa-solid fa-globe"></i> <span id="dir-text-mobile">LTR</span> View
+    </button>
+
+    <a href="javascript:void(0)" onclick="toggleLogoutModal(true)" 
+   class="flex items-center justify-between gap-4 p-4 bg-red-500/10 text-red-600 border border-red-500/20 rounded-2xl font-black uppercase text-[10px] tracking-[0.2em] hover:bg-red-600 hover:text-white transition-all shadow-sm group">
+    <div class="flex items-center gap-4">
+        <i class="fa-solid fa-power-off group-hover:rotate-90 transition-transform duration-500"></i> 
+        Terminate Session
+    </div>
+    <i class="fa-solid fa-triangle-exclamation opacity-40 group-hover:opacity-100"></i>
+</a>
+
+<div id="logoutModal" class="fixed inset-0 z-[9999] hidden items-center justify-center p-4">
+    <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-md animate-in fade-in duration-300"></div>
+    
+    <div class="relative bg-white dark:bg-slate-900 w-full max-w-sm rounded-[2rem] p-8 border border-slate-200 dark:border-slate-800 shadow-2xl transform transition-all duration-300 scale-95 opacity-0" id="modalBox">
+        
+        <div class="text-center mb-6">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-red-500/10 text-red-600 rounded-full mb-4">
+                <i class="fa-solid fa-satellite-dish text-2xl animate-pulse"></i>
+            </div>
+            <h3 class="text-xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter">Confirm Exit</h3>
+            <!-- <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 font-medium">Disconnecting from secure flight telemetry. Proceed?</p> -->
+        </div>
+
+        <div class="flex flex-col gap-3">
+            <a href="/login.html" class="w-full py-4 bg-red-600 text-white rounded-xl font-black uppercase text-[10px] tracking-widest text-center shadow-lg shadow-red-600/30 hover:bg-red-700 transition-all">
+                Confirm Disconnect
+            </a>
+            <button onclick="toggleLogoutModal(false)" class="w-full py-4 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                yes
+            </button>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-center">
+            <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest leading-none">No</span>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleLogoutModal(show) {
+    const modal = document.getElementById('logoutModal');
+    const box = document.getElementById('modalBox');
+
+    if (show) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        // Small delay to trigger the animation
+        setTimeout(() => {
+            box.classList.remove('scale-95', 'opacity-0');
+            box.classList.add('scale-100', 'opacity-100');
+        }, 10);
+    } else {
+        box.classList.remove('scale-100', 'opacity-100');
+        box.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }, 300);
+    }
+}
+</script>
+</div>
+        </div>
+    </div>
+
+    <main class="pt-24 lg:pt-12 pb-12 px-4 sm:px-6 lg:px-8 lg:pl-72 max-w-[1600px] mx-auto relative z-10">
+        
+        <div class="hidden lg:flex items-center justify-between mb-8 bg-white/50 dark:bg-slate-900/50 p-4 rounded-3xl border border-slate-200 dark:border-slate-800 backdrop-blur-sm">
+            <div class="px-3 py-1 bg-green-500/10 rounded-full border border-green-500/20 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                <span class="text-[9px] font-black text-green-600 uppercase tracking-widest">Ground Link: Active</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="text-right">
+                    <p class="text-[10px] font-black text-slate-900 dark:text-white uppercase">Capt. Miller</p>
+                    <p class="text-[9px] text-slate-400 font-bold uppercase">Base: Madurai</p>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-primary/10 border-2 border-white dark:border-slate-700 shadow-md overflow-hidden hover:scale-110 transition-transform cursor-pointer">
+                    <img src="Assets/userimg1" alt="Profile" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <div class="lg:col-span-8 space-y-8">
+                <div class="relative h-64 sm:h-80 bg-white dark:bg-slate-900 rounded-[3rem] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl group">
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div class="w-[200px] h-[200px] sm:w-[400px] sm:h-[400px] border border-primary/10 rounded-full flex items-center justify-center transition-all">
+                            <div class="w-[120px] h-[120px] sm:w-[250px] sm:h-[250px] border border-primary/10 rounded-full"></div>
+                        </div>
+                        <div class="absolute w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] bg-gradient-to-tr from-primary/5 dark:from-primary/10 to-transparent rounded-full animate-spin-slow"></div>
+                    </div>
+                    
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                        <i class="fa-solid fa-location-crosshairs text-primary text-xl animate-pulse-soft"></i>
+                        <div class="mt-2 px-3 py-1.5 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-xl border border-slate-200 dark:border-slate-700 shadow-2xl">
+                            <p class="text-[9px] font-black text-slate-900 dark:text-white uppercase">SH-202 | EN-ROUTE</p>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-6 left-6 sm:bottom-8 sm:left-10">
+                        <div class="px-4 py-2 bg-slate-900 dark:bg-primary text-white rounded-2xl text-[9px] font-black uppercase tracking-widest flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                            New York Hub
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-lg shadow-slate-200/50 dark:shadow-none">
+                        <p class="text-[9px] font-black text-slate-400 uppercase mb-4 tracking-widest">Visibility</p>
+                        <h4 class="text-3xl font-black text-slate-900 dark:text-white italic">98<span class="text-sm ml-1 opacity-40">%</span></h4>
+                        <div class="w-full h-1.5 bg-slate-100 dark:bg-slate-800 mt-4 rounded-full overflow-hidden"><div class="h-full bg-green-500 w-[98%]"></div></div>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-lg shadow-slate-200/50 dark:shadow-none">
+                        <p class="text-[9px] font-black text-slate-400 uppercase mb-4 tracking-widest">Air Pressure</p>
+                        <h4 class="text-3xl font-black text-slate-900 dark:text-white italic">1013<span class="text-sm ml-1 opacity-40">hPa</span></h4>
+                        <div class="w-full h-1.5 bg-slate-100 dark:bg-slate-800 mt-4 rounded-full overflow-hidden"><div class="h-full bg-primary w-[70%]"></div></div>
+                    </div>
+                    <div class="p-6 bg-primary text-white rounded-[2.5rem] shadow-xl shadow-primary/30 flex flex-col justify-between group cursor-pointer">
+                        <p class="text-[9px] font-black opacity-60 uppercase mb-4 tracking-widest">Current Route</p>
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-xl font-black italic uppercase">Swiss Alps</h4>
+                            <i class="fa-solid fa-chevron-right group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-4">
+                <div class="bg-white dark:bg-slate-900 rounded-[3.5rem] p-8 border border-slate-100 dark:border-slate-800 shadow-2xl lg:sticky lg:top-8">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter">Aircraft <span class="text-primary">Deck</span></h3>
+                        <p class="text-[9px] text-slate-400 uppercase tracking-widest mt-1">SH-Quest Series | 12 Seats</p>
+                    </div>
+
+                    <div class="relative bg-slate-50 dark:bg-slate-950/50 rounded-[3rem] p-6 border-2 border-dashed border-slate-200 dark:border-slate-800">
+                        <div class="w-20 h-4 bg-slate-200 dark:bg-slate-800 mx-auto rounded-t-full mb-6"></div>
+                        <div class="grid grid-cols-3 gap-y-6 gap-x-3 max-w-[200px] mx-auto py-2">
+                            <button onclick="selectSeat(this, '1A')" class="seat-node group relative aspect-square bg-white dark:bg-slate-800 rounded-xl shadow-md border-2 border-transparent transition-all flex items-center justify-center">
+                                <i class="fa-solid fa-couch text-slate-300 dark:text-slate-600 group-hover:text-primary"></i>
+                            </button>
+                            <div class="flex items-center justify-center"><div class="w-[1px] h-full bg-slate-200 dark:bg-slate-800"></div></div>
+                            <button onclick="selectSeat(this, '1B')" class="seat-node group relative aspect-square bg-white dark:bg-slate-800 rounded-xl shadow-md border-2 border-transparent transition-all flex items-center justify-center">
+                                <i class="fa-solid fa-couch text-slate-300 dark:text-slate-600 group-hover:text-primary"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-6 bg-slate-900 dark:bg-primary rounded-[2.5rem] text-white">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex flex-col">
+                                <span class="text-[7px] font-bold uppercase opacity-60 tracking-widest">Selection</span>
+                                <span id="seat-id" class="text-xl font-black italic tracking-tighter uppercase">--</span>
+                            </div>
+                            <h4 class="text-2xl font-black italic">$299</h4>
+                        </div>
+                        <button class="w-full py-4 bg-white text-slate-900 font-black rounded-2xl uppercase tracking-widest text-[9px] shadow-xl hover:scale-105 active:scale-95 transition-all">
+                            Confirm Launch
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleDarkMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        function toggleDir() {
+            const htmlTag = document.getElementById('root-html');
+            const newDir = htmlTag.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
+            htmlTag.setAttribute('dir', newDir);
+            document.getElementById('dir-text').innerText = newDir.toUpperCase();
+            if (document.getElementById('dir-text-mobile')) document.getElementById('dir-text-mobile').innerText = newDir.toUpperCase();
+            localStorage.setItem('direction', newDir);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const sidebar = document.getElementById('mobile-sidebar');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                setTimeout(() => {
+                    menu.classList.add('opacity-100');
+                    sidebar.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                menu.classList.remove('opacity-100');
+                sidebar.classList.add('translate-x-full');
+                setTimeout(() => menu.classList.add('hidden'), 300);
+            }
+        }
+
+        function selectSeat(btn, id) {
+            document.querySelectorAll('.seat-node').forEach(s => {
+                s.classList.remove('bg-primary', 'text-white', 'border-primary', 'shadow-lg');
+                s.classList.add('bg-white', 'dark:bg-slate-800');
+                const icon = s.querySelector('i');
+                if (icon) icon.classList.replace('text-white', 'text-slate-300');
+            });
+            btn.classList.add('bg-primary', 'text-white', 'border-primary', 'shadow-lg');
+            btn.classList.remove('bg-white', 'dark:bg-slate-800');
+            const icon = btn.querySelector('i');
+            if (icon) icon.classList.replace('text-slate-300', 'text-white');
+            document.getElementById('seat-id').innerText = id;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+            const savedDir = localStorage.getItem('direction') || 'ltr';
+            document.getElementById('root-html').setAttribute('dir', savedDir);
+            document.getElementById('dir-text').innerText = savedDir.toUpperCase();
+        });
+    </script>
+</body>
+</html>
